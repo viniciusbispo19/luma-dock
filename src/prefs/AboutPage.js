@@ -16,7 +16,7 @@
 * along with this program. If not, see <https://www.gnu.org/licenses/>.
 *
 * Luma Dock is a fork of Dhruva. Modified in 2026 by viniciusbispo19:
-* the About page was rewritten to credit the original project.
+* the About page was rewritten for Luma Dock.
 */
 
 
@@ -27,7 +27,6 @@ import { gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extensio
 
 
 const FORK_REPO = 'viniciusbispo19/luma-dock';
-const ORIGINAL_REPO = 'NarkAgni/dhruva';
 
 
 export function buildAboutPage(prefs, window) {
@@ -64,7 +63,7 @@ function buildAboutHero(prefs, page) {
         margin_top: 8
     }));
     heroBox.append(new Gtk.Label({
-        label: _('A beautifully crafted, highly customisable dock for GNOME Shell'),
+        label: _('A light and beautiful dock for GNOME, made to set up your desktop your way'),
         css_classes: ['dim-label'],
         margin_bottom: 4
     }));
@@ -106,7 +105,6 @@ function buildAboutLinks(page, window) {
     };
 
     addLink(_('GitHub Repository'), FORK_REPO, 'system-software-install-symbolic');
-    addLink(_('Original Project'), ORIGINAL_REPO, 'emblem-shared-symbolic');
 }
 
 function buildAboutAuthor(prefs, page) {
@@ -122,20 +120,14 @@ function buildAboutAuthor(prefs, page) {
     }));
 
     group.add(new Adw.ActionRow({
-        title: 'NarkAgni',
-        subtitle: _('Author of Dhruva, the original project'),
-        icon_name: 'avatar-default-symbolic'
-    }));
-
-    group.add(new Adw.ActionRow({
         title: _('Features'),
-        subtitle: _('Per-app running indicators · Hover zoom magnification · Window minimize effects (Magic Lamp, Snake, Vortex &amp; more) · Icon click animations (Bounce, Jelly, Heartbeat &amp; 20+ styles) · Intelligent auto-hide with edge pressure reveal · Chameleon theme (wallpaper colour matching) · Full-width dock mode · Multi-monitor support · Custom folders, Trash, Desktop button &amp; App Grid · Workspace isolation · Aero Peek window previews · Lock icons to prevent accidental reorder'),
+        subtitle: _('Floating, edge to edge or as a panel · Icon zoom and window previews · App folders and Music Pill with lyrics · Fully in Brazilian Portuguese'),
         icon_name: 'starred-symbolic'
     }));
 
     group.add(new Adw.ActionRow({
-        title: _('Disclaimer'),
-        subtitle: _('Luma Dock is an independent fork of Dhruva, released under the GPL-3.0 license, and is not an official release of the original project.'),
+        title: _('License'),
+        subtitle: _('Free software, distributed under the GPL-3.0 license, without any warranty.'),
         icon_name: 'dialog-information-symbolic'
     }));
 }

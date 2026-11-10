@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luma Dock\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-10 09:20-0300\n"
+"POT-Creation-Date: 2026-11-10 10:23-0300\n"
 "PO-Revision-Date: 2026-10-05 21:55+0530\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
@@ -66,72 +66,53 @@ msgstr "प्रीसेट"
 msgid "New Folder"
 msgstr "नया फ़ोल्डर"
 
-#: src/prefs/AboutPage.js:35
+#: src/prefs/AboutPage.js:34
 msgid "About"
 msgstr "परिचय"
 
-#: src/prefs/AboutPage.js:67
-msgid "A beautifully crafted, highly customisable dock for GNOME Shell"
-msgstr "GNOME Shell के लिए एक सुंदर और अत्यधिक कस्टमाइज़ करने योग्य डॉक"
+#: src/prefs/AboutPage.js:66
+msgid ""
+"A light and beautiful dock for GNOME, made to set up your desktop your way"
+msgstr ""
 
-#: src/prefs/AboutPage.js:72
+#: src/prefs/AboutPage.js:71
 msgid "Version"
 msgstr ""
 
-#: src/prefs/AboutPage.js:83
+#: src/prefs/AboutPage.js:82
 msgid "Links"
 msgstr "लिंक्स"
 
-#: src/prefs/AboutPage.js:108
+#: src/prefs/AboutPage.js:107
 msgid "GitHub Repository"
 msgstr "GitHub रिपॉजिटरी"
 
-#: src/prefs/AboutPage.js:109
-msgid "Original Project"
-msgstr ""
-
-#: src/prefs/AboutPage.js:114
+#: src/prefs/AboutPage.js:112
 msgid "Credits"
 msgstr "क्रेडिट"
 
-#: src/prefs/AboutPage.js:120
+#: src/prefs/AboutPage.js:118
 #, fuzzy
 msgid "Luma Dock Maintainer"
 msgstr "ध्रुव सेटिंग्स"
 
-#: src/prefs/AboutPage.js:126
-msgid "Author of Dhruva, the original project"
-msgstr ""
-
-#: src/prefs/AboutPage.js:131
+#: src/prefs/AboutPage.js:123
 msgid "Features"
 msgstr "विशेषताएँ"
 
-#: src/prefs/AboutPage.js:132
-#, fuzzy
+#: src/prefs/AboutPage.js:124
 msgid ""
-"Per-app running indicators · Hover zoom magnification · Window minimize "
-"effects (Magic Lamp, Snake, Vortex &amp; more) · Icon click animations "
-"(Bounce, Jelly, Heartbeat &amp; 20+ styles) · Intelligent auto-hide with "
-"edge pressure reveal · Chameleon theme (wallpaper colour matching) · Full-"
-"width dock mode · Multi-monitor support · Custom folders, Trash, Desktop "
-"button &amp; App Grid · Workspace isolation · Aero Peek window previews · "
-"Lock icons to prevent accidental reorder"
+"Floating, edge to edge or as a panel · Icon zoom and window previews · App "
+"folders and Music Pill with lyrics · Fully in Brazilian Portuguese"
 msgstr ""
-"ऐप रनिंग इंडिकेटर · होवर ज़ूम आवर्धन · विंडो मिनिमाइज़ प्रभाव (मैजिक लैंप, स्नेक, वोर्टेक्स "
-"आदि) · आइकन क्लिक एनिमेशन (बाउंस, जेली, हार्टबीट और 20+ शैलियाँ) · एज प्रेशर रीवील के "
-"साथ इंटेलिजेंट ऑटो-हाइड · गिरगिट थीम (वॉलपेपर रंग मिलान) · फुल-विड्थ डॉक मोड · मल्टी-"
-"मॉनिटर समर्थन · कस्टम फ़ोल्डर्स, ट्रैश, डेस्कटॉप बटन और ऐप ग्रिड · वर्कस्पेस आइसोलेशन · "
-"एरो पीक विंडो पूर्वावलोकन · आइकन लॉक"
 
-#: src/prefs/AboutPage.js:137
-msgid "Disclaimer"
-msgstr "अस्वीकरण"
+#: src/prefs/AboutPage.js:129
+msgid "License"
+msgstr ""
 
-#: src/prefs/AboutPage.js:138
+#: src/prefs/AboutPage.js:130
 msgid ""
-"Luma Dock is an independent fork of Dhruva, released under the GPL-3.0 "
-"license, and is not an official release of the original project."
+"Free software, distributed under the GPL-3.0 license, without any warranty."
 msgstr ""
 
 #: src/prefs/AppearancePage.js:33
@@ -2536,7 +2517,7 @@ msgid "Select Custom Folder Icon"
 msgstr "कस्टम फ़ोल्डर आइकन छवि चुनें"
 
 #: src/ui/magnifier/MagnifierFrameEngine.js:881
-#: src/ui/modules/AppGridModule.js:279
+#: src/ui/modules/AppGridModule.js:276
 msgid "Applications"
 msgstr "अनुप्रयोग"
 

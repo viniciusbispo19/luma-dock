@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luma Dock\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-10 09:20-0300\n"
+"POT-Creation-Date: 2026-11-10 10:23-0300\n"
 "PO-Revision-Date: 2026-11-10 08:44-0300\n"
 "Last-Translator: Vini (github.com/viniciusbispo19)\n"
 "Language-Team: Português do Brasil\n"
@@ -67,78 +67,58 @@ msgstr "Redefinir"
 msgid "New Folder"
 msgstr "Nova Pasta"
 
-#: src/prefs/AboutPage.js:35
+#: src/prefs/AboutPage.js:34
 msgid "About"
 msgstr "Sobre"
 
-#: src/prefs/AboutPage.js:67
-msgid "A beautifully crafted, highly customisable dock for GNOME Shell"
+#: src/prefs/AboutPage.js:66
+msgid ""
+"A light and beautiful dock for GNOME, made to set up your desktop your way"
 msgstr ""
-"Um dock lindamente elaborado e altamente personalizável para o GNOME Shell"
+"Uma dock leve e bonita para o GNOME, feita para deixar a área de trabalho do "
+"seu jeito"
 
-#: src/prefs/AboutPage.js:72
+#: src/prefs/AboutPage.js:71
 msgid "Version"
 msgstr "Versão"
 
-#: src/prefs/AboutPage.js:83
+#: src/prefs/AboutPage.js:82
 msgid "Links"
 msgstr "Links"
 
-#: src/prefs/AboutPage.js:108
+#: src/prefs/AboutPage.js:107
 msgid "GitHub Repository"
 msgstr "Repositório no GitHub"
 
-#: src/prefs/AboutPage.js:109
-msgid "Original Project"
-msgstr "Projeto Original"
-
-#: src/prefs/AboutPage.js:114
+#: src/prefs/AboutPage.js:112
 msgid "Credits"
 msgstr "Créditos"
 
-#: src/prefs/AboutPage.js:120
+#: src/prefs/AboutPage.js:118
 msgid "Luma Dock Maintainer"
 msgstr "Mantenedor do Luma Dock"
 
-#: src/prefs/AboutPage.js:126
-msgid "Author of Dhruva, the original project"
-msgstr "Autor do Dhruva, o projeto original"
-
-#: src/prefs/AboutPage.js:131
+#: src/prefs/AboutPage.js:123
 msgid "Features"
 msgstr "Recursos"
 
-#: src/prefs/AboutPage.js:132
+#: src/prefs/AboutPage.js:124
 msgid ""
-"Per-app running indicators · Hover zoom magnification · Window minimize "
-"effects (Magic Lamp, Snake, Vortex &amp; more) · Icon click animations "
-"(Bounce, Jelly, Heartbeat &amp; 20+ styles) · Intelligent auto-hide with "
-"edge pressure reveal · Chameleon theme (wallpaper colour matching) · Full-"
-"width dock mode · Multi-monitor support · Custom folders, Trash, Desktop "
-"button &amp; App Grid · Workspace isolation · Aero Peek window previews · "
-"Lock icons to prevent accidental reorder"
+"Floating, edge to edge or as a panel · Icon zoom and window previews · App "
+"folders and Music Pill with lyrics · Fully in Brazilian Portuguese"
 msgstr ""
-"Indicadores de execução por app · Ampliação com zoom ao passar o mouse · "
-"Efeitos ao minimizar janelas (Lâmpada Mágica, Cobra, Vórtice &amp; mais) · "
-"Animações de clique nos ícones (Quicar, Gelatina, Batimento &amp; mais de 20 "
-"estilos) · Ocultação automática inteligente com revelação por pressão na "
-"borda · Tema camaleão (cores combinando com o papel de parede) · Modo dock "
-"em largura total · Suporte a vários monitores · Pastas personalizadas, "
-"Lixeira, botão Mostrar a Área de Trabalho &amp; Grade de Apps · Isolamento "
-"por área de trabalho · Prévias de janelas com Aero Peek · Bloqueio de ícones "
-"para evitar reordenação acidental"
+"Flutuante, de ponta a ponta ou como painel · Zoom nos ícones e prévias de "
+"janela · Pastas de apps e Music Pill com letras · Toda em português do Brasil"
 
-#: src/prefs/AboutPage.js:137
-msgid "Disclaimer"
-msgstr "Aviso"
+#: src/prefs/AboutPage.js:129
+msgid "License"
+msgstr "Licença"
 
-#: src/prefs/AboutPage.js:138
+#: src/prefs/AboutPage.js:130
 msgid ""
-"Luma Dock is an independent fork of Dhruva, released under the GPL-3.0 "
-"license, and is not an official release of the original project."
+"Free software, distributed under the GPL-3.0 license, without any warranty."
 msgstr ""
-"O Luma Dock é um fork independente do Dhruva, distribuído sob a licença "
-"GPL-3.0, e não é uma versão oficial do projeto original."
+"Software livre, distribuído sob a licença GPL-3.0, sem nenhuma garantia."
 
 #: src/prefs/AppearancePage.js:33
 msgid "Custom Color"
@@ -2441,7 +2421,7 @@ msgid "Select Custom Folder Icon"
 msgstr "Selecionar Ícone da Pasta Personalizada"
 
 #: src/ui/magnifier/MagnifierFrameEngine.js:881
-#: src/ui/modules/AppGridModule.js:279
+#: src/ui/modules/AppGridModule.js:276
 msgid "Applications"
 msgstr "Aplicativos"
 
