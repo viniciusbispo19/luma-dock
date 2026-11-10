@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luma Dock\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-10 10:23-0300\n"
+"POT-Creation-Date: 2026-11-10 10:32-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Wide applets get their own row in the tray"
 msgstr ""
 
-#: src/core/panel/TrayMenu.js:541 src/prefs/ModulesPage.js:771
+#: src/core/panel/TrayMenu.js:541 src/prefs/ModulesPage.js:783
 #: src/prefs/PanelPage.js:537
 msgid "Reset"
 msgstr ""
@@ -578,8 +578,8 @@ msgstr ""
 msgid "Choose the Strip Behind the Dock"
 msgstr ""
 
-#: src/prefs/BlurPage.js:573 src/prefs/ModulesPage.js:239
-#: src/prefs/ModulesPage.js:770 src/ui/context-menu/TrashActionsHandler.js:86
+#: src/prefs/BlurPage.js:573 src/prefs/ModulesPage.js:251
+#: src/prefs/ModulesPage.js:782 src/ui/context-menu/TrashActionsHandler.js:86
 #: src/ui/folder-menu/FolderMenuBuilder.js:289
 msgid "Cancel"
 msgstr ""
@@ -618,7 +618,7 @@ msgstr ""
 msgid "Switch independent mode from the keyboard"
 msgstr ""
 
-#: src/prefs/LayoutPage.js:158 src/prefs/ModulesPage.js:325
+#: src/prefs/LayoutPage.js:158 src/prefs/ModulesPage.js:337
 #: src/prefs/BehaviorPage.js:51 src/prefs/BehaviorPage.js:168
 msgid "None"
 msgstr ""
@@ -696,7 +696,7 @@ msgid "Where icons sit along the full-width bar"
 msgstr ""
 
 #: src/prefs/LayoutPage.js:215 src/prefs/ModulesPage.js:146
-#: src/prefs/ModulesPage.js:634 src/prefs/PanelPage.js:438
+#: src/prefs/ModulesPage.js:646 src/prefs/PanelPage.js:438
 msgid "Start"
 msgstr ""
 
@@ -706,7 +706,7 @@ msgid "Center"
 msgstr ""
 
 #: src/prefs/LayoutPage.js:217 src/prefs/ModulesPage.js:147
-#: src/prefs/ModulesPage.js:635 src/prefs/PanelPage.js:440
+#: src/prefs/ModulesPage.js:647 src/prefs/PanelPage.js:440
 msgid "End"
 msgstr ""
 
@@ -862,7 +862,7 @@ msgstr ""
 msgid "Opens your list of applications"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:144 src/prefs/ModulesPage.js:633
+#: src/prefs/ModulesPage.js:144 src/prefs/ModulesPage.js:645
 #: src/prefs/PanelPage.js:478
 msgid "Position"
 msgstr ""
@@ -883,7 +883,7 @@ msgstr ""
 msgid "Grid Icon Colour"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:164 src/ui/modules/DockModules.js:395
+#: src/prefs/ModulesPage.js:164 src/ui/modules/DockModules.js:422
 msgid "Show Desktop"
 msgstr ""
 
@@ -915,32 +915,32 @@ msgstr ""
 msgid "Shortcuts that open in your file manager"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:182 src/prefs/ModulesPage.js:204
+#: src/prefs/ModulesPage.js:182 src/prefs/ModulesPage.js:216
 #: src/ui/modules/SystemFoldersModule.js:33
 msgid "Home"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:183 src/prefs/ModulesPage.js:205
+#: src/prefs/ModulesPage.js:183 src/prefs/ModulesPage.js:217
 #: src/ui/modules/SystemFoldersModule.js:52
 msgid "Downloads"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:184 src/prefs/ModulesPage.js:206
+#: src/prefs/ModulesPage.js:184 src/prefs/ModulesPage.js:218
 #: src/ui/modules/SystemFoldersModule.js:53
 msgid "Documents"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:185 src/prefs/ModulesPage.js:207
+#: src/prefs/ModulesPage.js:185 src/prefs/ModulesPage.js:219
 #: src/ui/modules/SystemFoldersModule.js:54
 msgid "Pictures"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:186 src/prefs/ModulesPage.js:208
+#: src/prefs/ModulesPage.js:186 src/prefs/ModulesPage.js:220
 #: src/ui/modules/SystemFoldersModule.js:55
 msgid "Videos"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:187 src/prefs/ModulesPage.js:209
+#: src/prefs/ModulesPage.js:187 src/prefs/ModulesPage.js:221
 #: src/ui/modules/SystemFoldersModule.js:56
 msgid "Music"
 msgstr ""
@@ -958,206 +958,239 @@ msgid "Recycle Bin"
 msgstr ""
 
 #: src/prefs/ModulesPage.js:191
-msgid "Your Folders"
+msgid "Clicking a Folder"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:191
-msgid "Any folder you like, with its own name and icon"
+#: src/prefs/ModulesPage.js:192
+msgid ""
+"Applies to Home, the folders above and your own folders. Drives and the "
+"Recycle Bin always open in your file manager"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:193 src/prefs/BehaviorPage.js:159
+msgid "On Click"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:194
+msgid ""
+"The fan shows the newest files rising from the icon, on a dock at the top or "
+"bottom of the screen"
+msgstr ""
+
+#. Translators: the folder "fan", files spread out on an arc above the dock icon (like macOS stacks).
+#: src/prefs/ModulesPage.js:196
+msgid "Fan"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:197 src/ui/folder-fan/FolderFan.js:253
+msgid "Open in Files"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:199
+msgid "Files in the Fan"
 msgstr ""
 
 #: src/prefs/ModulesPage.js:203
+msgid "Your Folders"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:203
+msgid "Any folder you like, with its own name and icon"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:215
 msgid "System Folder (Default)"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:210
+#: src/prefs/ModulesPage.js:222
 msgid "Public Share"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:211
+#: src/prefs/ModulesPage.js:223
 msgid "Templates"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:212
+#: src/prefs/ModulesPage.js:224
 msgid "Desktop"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:213
+#: src/prefs/ModulesPage.js:225
 msgid "Projects / Code"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:214
+#: src/prefs/ModulesPage.js:226
 msgid "Cloud / Remote"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:224
+#: src/prefs/ModulesPage.js:236
 msgid "Edit Quick Folder"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:224 src/prefs/ModulesPage.js:597
+#: src/prefs/ModulesPage.js:236 src/prefs/ModulesPage.js:609
 msgid "Add Quick Folder"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:225
+#: src/prefs/ModulesPage.js:237
 msgid "Update"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:225
+#: src/prefs/ModulesPage.js:237
 msgid "Add"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:250
+#: src/prefs/ModulesPage.js:262
 msgid "Folder Name (e.g. Workspace)"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:257
+#: src/prefs/ModulesPage.js:269
 msgid "Folder Path"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:267
+#: src/prefs/ModulesPage.js:279
 msgid "Browse folder..."
 msgstr ""
 
-#: src/prefs/ModulesPage.js:273
+#: src/prefs/ModulesPage.js:285
 msgid "Select Folder"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:296
+#: src/prefs/ModulesPage.js:308
 msgid "Preset System Icon"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:297
+#: src/prefs/ModulesPage.js:309
 msgid "Custom Image File"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:298
+#: src/prefs/ModulesPage.js:310
 msgid "Custom Emoji"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:302
+#: src/prefs/ModulesPage.js:314
 msgid "Icon Type"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:308
+#: src/prefs/ModulesPage.js:320
 msgid "Select Preset Icon"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:313
+#: src/prefs/ModulesPage.js:325
 msgid "Select Image File"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:314
+#: src/prefs/ModulesPage.js:326
 msgid "PNG, SVG, ICO format"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:334
+#: src/prefs/ModulesPage.js:346
 msgid "Browse..."
 msgstr ""
 
-#: src/prefs/ModulesPage.js:340
+#: src/prefs/ModulesPage.js:352
 msgid "Select Custom Folder Icon Image"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:343
+#: src/prefs/ModulesPage.js:355
 msgid "Images (.png, .svg, .ico)"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:390
+#: src/prefs/ModulesPage.js:402
 msgid "Enter Emoji (Only 1 emoji allowed)"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:394
+#: src/prefs/ModulesPage.js:406
 msgid "Only 1 emoji is allowed. Multiple emojis are not supported."
 msgstr ""
 
-#: src/prefs/ModulesPage.js:481 src/ui/modules/SystemFoldersModule.js:87
+#: src/prefs/ModulesPage.js:493 src/ui/modules/SystemFoldersModule.js:87
 msgid "Custom Folder"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:567
+#: src/prefs/ModulesPage.js:579
 msgid "Edit folder"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:578
+#: src/prefs/ModulesPage.js:590
 msgid "Remove folder"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:612 src/prefs/PanelPage.js:522
+#: src/prefs/ModulesPage.js:624 src/prefs/PanelPage.js:522
 msgid "Clock"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:612
+#: src/prefs/ModulesPage.js:624
 msgid "Date and time on the dock. Hidden on side docks"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:637 src/prefs/PanelPage.js:276
+#: src/prefs/ModulesPage.js:649 src/prefs/PanelPage.js:276
 msgid "24-Hour Time"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:638
+#: src/prefs/ModulesPage.js:650
 msgid "Text Size"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:644
+#: src/prefs/ModulesPage.js:656
 msgid "Backup"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:644
+#: src/prefs/ModulesPage.js:656
 msgid "Your settings, pinned apps and folders in one file"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:645
+#: src/prefs/ModulesPage.js:657
 msgid "Export"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:645
+#: src/prefs/ModulesPage.js:657
 msgid "Save everything to a file"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:646
+#: src/prefs/ModulesPage.js:658
 msgid "Export…"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:651
+#: src/prefs/ModulesPage.js:663
 msgid "Import"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:651
+#: src/prefs/ModulesPage.js:663
 msgid "Load a file you exported before"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:652
+#: src/prefs/ModulesPage.js:664
 msgid "Import…"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:659
+#: src/prefs/ModulesPage.js:671
 msgid "Start Over"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:660
+#: src/prefs/ModulesPage.js:672
 msgid "Put every Luma Dock setting back to its default"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:662
+#: src/prefs/ModulesPage.js:674
 msgid "Reset All…"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:673
+#: src/prefs/ModulesPage.js:685
 msgid "Export Luma Dock Settings"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:716
+#: src/prefs/ModulesPage.js:728
 msgid "Luma Dock settings (JSON)"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:721
+#: src/prefs/ModulesPage.js:733
 msgid "Import Luma Dock Settings"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:764
+#: src/prefs/ModulesPage.js:776
 msgid "Reset Every Setting?"
 msgstr ""
 
-#: src/prefs/ModulesPage.js:765
+#: src/prefs/ModulesPage.js:777
 msgid "Luma Dock goes back to how it looked on day one. This cannot be undone."
 msgstr ""
 
@@ -1714,10 +1747,6 @@ msgstr ""
 
 #: src/prefs/BehaviorPage.js:158
 msgid "Animations"
-msgstr ""
-
-#: src/prefs/BehaviorPage.js:159
-msgid "On Click"
 msgstr ""
 
 #: src/prefs/BehaviorPage.js:159
@@ -2640,3 +2669,7 @@ msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] ""
 msgstr[1] ""
+
+#: src/ui/folder-fan/FolderFan.js:251
+msgid "This folder is empty"
+msgstr ""

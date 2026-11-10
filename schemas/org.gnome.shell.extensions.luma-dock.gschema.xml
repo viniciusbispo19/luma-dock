@@ -509,6 +509,22 @@
       <summary>Notification Badge Custom Color</summary>
     </key>
 
+    <key name="folder-click-action" type="s">
+      <choices>
+        <choice value='fan'/>
+        <choice value='open'/>
+      </choices>
+      <default>'fan'</default>
+      <summary>Folder click action</summary>
+      <description>What clicking a folder on the dock does: show its newest files as a fan, or open it in the file manager.</description>
+    </key>
+
+    <key name="folder-fan-items" type="i">
+      <range min="5" max="15"/>
+      <default>10</default>
+      <summary>Files in the folder fan</summary>
+    </key>
+
     <key name="music-pill-separator" type="b">
       <default>true</default>
       <summary>Music Pill Separator</summary>

@@ -168,6 +168,8 @@ const KEYS = {
     clockPosition: [STRING, 'clock-position'],
     showHome: [BOOLEAN, 'show-home'],
     showMounts: [BOOLEAN, 'show-mounts'],
+    folderClickAction: [STRING, 'folder-click-action'],
+    folderFanItems: [INT, 'folder-fan-items'],
     blurEnabled: [BOOLEAN, 'blur-enabled'],
     blurMode: [STRING, 'blur-mode'],
     blurIntensity: [DOUBLE, 'blur-intensity'],

@@ -664,3 +664,13 @@
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0.08);
 }
+/* Folder fan (FolderFan.js) */
+.luma-fan-label {
+    color: #ffffff;
+    font-size: 10.5pt;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background-color: rgba(28, 28, 32, 0.88);
+}
+.luma-fan-item:hover .luma-fan-label { background-color: -st-accent-color; }
+.luma-fan-thumb { border-radius: 8px; }

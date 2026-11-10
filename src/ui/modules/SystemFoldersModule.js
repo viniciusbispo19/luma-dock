@@ -24,13 +24,13 @@ import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.j
 import { Settings } from '../../core/SettingsManager.js';
 
 
-export function buildSystemFoldersModule(dockUI, createBtn, toggleAppWindow) {
+export function buildSystemFoldersModule(dockUI, createBtn, toggleAppWindow, openFolder) {
     const systemModules = [];
     const settings = dockUI.settings;
 
     if (Settings.showHome) {
         const homeDir = GLib.get_home_dir();
-        const btn = createBtn('user-home', _('Home'), (b) => toggleAppWindow(`file://${homeDir}`, homeDir, _('Home'), b), homeDir);
+        const btn = createBtn('user-home', _('Home'), (b) => openFolder(`file://${homeDir}`, homeDir, _('Home'), b), homeDir);
         btn._modType = 'home';
         if (btn._delegate && btn._delegate.app) btn._delegate.app.get_id = () => 'luma-sys-home';
         systemModules.push(btn);
@@ -42,7 +42,7 @@ export function buildSystemFoldersModule(dockUI, createBtn, toggleAppWindow) {
             const dirPath = GLib.get_user_special_dir(dirEnum) || `${GLib.get_home_dir()}/${fallback}`;
             const file = Gio.File.new_for_path(dirPath);
             const uri = file.get_uri();
-            const btn = createBtn(icon, localizedName, (b) => toggleAppWindow(uri, dirPath, localizedName, b), dirPath);
+            const btn = createBtn(icon, localizedName, (b) => openFolder(uri, dirPath, localizedName, b), dirPath);
             btn._modType = modName;
             if (btn._delegate && btn._delegate.app) btn._delegate.app.get_id = () => `luma-sys-${modName}`;
             systemModules.push(btn);
@@ -93,7 +93,7 @@ export function buildSystemFoldersModule(dockUI, createBtn, toggleAppWindow) {
             ? fPath
             : Gio.File.new_for_path(fPath).get_uri();
 
-        const btn = createBtn(fIcon, fName, (b) => toggleAppWindow(uri, fPath, fName, b), fPath);
+        const btn = createBtn(fIcon, fName, (b) => openFolder(uri, fPath, fName, b), fPath);
         btn._customFolderIndex = idx;
         btn._modType = `custom-${idx}`;
 

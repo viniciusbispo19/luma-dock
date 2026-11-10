@@ -39,6 +39,7 @@ import { isPanelOrFullWidth } from '../../core/LayoutMode.js';
 import AppContextMenu from '../context-menu/AppContextMenu.js';
 import { animateIconClick } from '../effects/IconClickEffect.js';
 import { buildSystemFoldersModule } from './SystemFoldersModule.js';
+import FolderFan, { canShowFolderFan } from '../folder-fan/FolderFan.js';
 import { setMagnifierPauseState } from '../magnifier/MagnifierState.js';
 import { animateMinimize, animateRestore } from '../effects/WindowEffects.js';
 import { getIndicatorProps, filterActiveWindows } from '../dock/DockRenderer.js';
@@ -158,6 +159,32 @@ export function buildModules(dockUI, iconSize) {
 
             scheduleLaunchRenders(dockUI);
         }
+    };
+
+    // Folders on the dock open as a fan of their newest files (the default)
+    // or straight in the file manager, depending on 'folder-click-action'.
+    const openFolder = (uri, folderPath, folderName, btnActor) => {
+        const openInFiles = () => toggleAppWindow(uri, folderPath, folderName, btnActor);
+        const isLocalPath = Boolean(folderPath) && !folderPath.includes('://');
+        if (Settings.folderClickAction !== 'fan' || !isLocalPath || !canShowFolderFan(dockUI.dockPosition)) {
+            openInFiles();
+            return;
+        }
+
+        const current = dockUI.activeFolderMenu;
+        if (current) {
+            current.hide();
+            dockUI.activeFolderMenu = null;
+            if (current instanceof FolderFan && current.isFor(btnActor)) return;
+        }
+        if (dockUI.activeContextMenu) {
+            dockUI.activeContextMenu.hide();
+            dockUI.activeContextMenu = null;
+        }
+
+        const fan = new FolderFan(dockUI, { path: folderPath, name: folderName }, btnActor, openInFiles);
+        dockUI.activeFolderMenu = fan;
+        fan.show();
     };
 
     const createBtn = (iconOrName, tooltipName, clickAction, folderPath = null) => {
@@ -398,7 +425,7 @@ export function buildModules(dockUI, iconSize) {
         }
     }
 
-    const folders = buildSystemFoldersModule(dockUI, createBtn, toggleAppWindow);
+    const folders = buildSystemFoldersModule(dockUI, createBtn, toggleAppWindow, openFolder);
     systemModules.push(...folders);
 
     if (Settings.showTrash) {

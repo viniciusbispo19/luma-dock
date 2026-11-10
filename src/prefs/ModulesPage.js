@@ -188,6 +188,18 @@ export function buildModulesPage(prefs, window, settings) {
     addSwitchRow(placesGroup, settings, 'show-mounts', _('USB &amp; Other Drives'), _('Appear while they are connected'));
     addSwitchRow(placesGroup, settings, 'show-trash', _('Recycle Bin'));
 
+    const folderClickGroup = addGroup(page, _('Clicking a Folder'),
+        _('Applies to Home, the folders above and your own folders. Drives and the Recycle Bin always open in your file manager'));
+    addSegmentedRow(folderClickGroup, settings, 'folder-click-action', _('On Click'),
+        _('The fan shows the newest files rising from the icon, on a dock at the top or bottom of the screen'), [
+            // Translators: the folder "fan", files spread out on an arc above the dock icon (like macOS stacks).
+            { name: _('Fan'), value: 'fan' },
+            { name: _('Open in Files'), value: 'open' },
+        ]);
+    const fanItemsRow = addSliderRow(folderClickGroup, settings, 'folder-fan-items', _('Files in the Fan'), null,
+        { lower: 5, upper: 15, step: 1 }, fmt.plain);
+    showWhen(fanItemsRow, settings, ['folder-click-action'], () => settings.get_string('folder-click-action') === 'fan');
+
     const customFoldersGroup = addGroup(page, _('Your Folders'), _('Any folder you like, with its own name and icon'));
 
     const folderListBox = new Gtk.ListBox({
