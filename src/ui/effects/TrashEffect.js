@@ -20,6 +20,7 @@
 import St from 'gi://St';
 import Clutter from 'gi://Clutter';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import { createAppIcon } from '../dock/DockButtonBase.js';
 
 
 const PUFF_COUNT = 9;
@@ -81,8 +82,7 @@ function spawnPuff(x, y, iconSize, index) {
 
 export function playTrashEffect(app, x, y, iconSize) {
     if (app) {
-        const icon = app.create_icon_texture(iconSize);
-        icon.set_size(iconSize, iconSize);
+        const { actor: icon } = createAppIcon(app, iconSize);
         icon.set_pivot_point(0.5, 0.5);
         icon.set_position(x - iconSize / 2, y - iconSize / 2);
         track(icon);

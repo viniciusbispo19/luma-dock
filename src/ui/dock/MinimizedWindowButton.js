@@ -27,7 +27,7 @@ import { getIndicatorProps } from './DockRenderer.js';
 import { Settings } from '../../core/SettingsManager.js';
 import AppContextMenu from '../context-menu/AppContextMenu.js';
 import { animateRestore, isThumbnailHidden } from '../effects/WindowEffects.js';
-import { createBaseButtonContainer, attachHoverBackground } from './DockButtonBase.js';
+import { createBaseButtonContainer, attachHoverBackground, createAppIcon } from './DockButtonBase.js';
 
 
 const THUMBNAIL_RATIO = 0.9;
@@ -49,8 +49,10 @@ function layoutThumbnail(frame, clone, win, size) {
 function createAppBadge(app, iconSize) {
     const badgeSize = Math.round(iconSize * BADGE_RATIO);
     const maxZoom = Settings.hoverZoom ? 1.0 + (Settings.hoverZoomFactor - 1.0) * 2.0 : 1.0;
-    const badge = app.create_icon_texture(Math.ceil(badgeSize * maxZoom));
-    badge.set_size(badgeSize, badgeSize);
+    const zoomSize = Math.ceil(badgeSize * maxZoom);
+    const { actor: badge, crispIcon } = createAppIcon(app, badgeSize, zoomSize);
+    // Render a normal icon at the zoomed size so it stays sharp when magnified.
+    if (crispIcon) crispIcon.set_icon_size(zoomSize);
     badge.set_x_align(Clutter.ActorAlign.END);
     badge.set_y_align(Clutter.ActorAlign.END);
     badge.set_x_expand(true);

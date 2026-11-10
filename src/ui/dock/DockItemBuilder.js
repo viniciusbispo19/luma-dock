@@ -35,7 +35,7 @@ import { getIndicatorProps, filterActiveWindows } from './DockRenderer.js';
 import { animateMinimize, animateRestore } from '../effects/WindowEffects.js';
 import { hexToRgba, isActorAlive, setBoxVertical, captureActorRect } from '../../core/Utils.js';
 import {
-    createBaseButtonContainer, createIndicatorBox, attachHoverBackground, stripIndicatorSize, syncDynamicIndicator, attachCrispIcon,
+    createBaseButtonContainer, createIndicatorBox, attachHoverBackground, stripIndicatorSize, syncDynamicIndicator, attachCrispIcon, createAppIcon,
 } from './DockButtonBase.js';
 
 
@@ -189,8 +189,7 @@ export function buildAppButton(dockUI, app, isRunning, finalActiveWindows, isFoc
 
     const actualMaxZoom = hoverZoom ? (1.0 + (zoomFactor - 1.0) * 2.0) : 1.0;
     const renderSize = Math.ceil(iconSize * actualMaxZoom);
-    const icon = app.create_icon_texture(iconSize);
-    icon.set_size(iconSize, iconSize);
+    const { actor: icon, crispIcon } = createAppIcon(app, iconSize, renderSize);
 
     const iconBin = new St.Bin({
         child: icon,
@@ -251,7 +250,7 @@ export function buildAppButton(dockUI, app, isRunning, finalActiveWindows, isFoc
     btn._iconWrapper = iconWrapper;
     btn._indicatorActor = dotBox;
     btn._hasRunningIndicator = isIndicatorActive;
-    attachCrispIcon(btn, icon, iconSize, renderSize);
+    attachCrispIcon(btn, crispIcon, iconSize, renderSize);
 
     const dims = { iconSize, pad, expandedDim, collapsedDim, isVerticalDock };
     btn._dims = dims;

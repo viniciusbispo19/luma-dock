@@ -112,6 +112,55 @@ export function createBaseButtonContainer(appBox) {
     return btn;
 }
 
+/**
+ * Wraps an icon actor of unknown kind in a `size`×`size` box, scaling it
+ * (instead of resizing it) so all of its drawing fits.
+ */
+export function fitIconActor(actor, size) {
+    let [width, height] = actor.get_size();
+    if (!(width > 0 && height > 0)) {
+        [, width] = actor.get_preferred_width(-1);
+        [, height] = actor.get_preferred_height(-1);
+    }
+
+    const box = new St.Widget({ width: size, height: size });
+    box.add_child(actor);
+    if (width > 0 && height > 0) {
+        actor.set_position(Math.round((size - width) / 2), Math.round((size - height) / 2));
+        actor.set_pivot_point(0.5, 0.5);
+        const scale = size / Math.max(width, height);
+        actor.set_scale(scale, scale);
+    }
+    return box;
+}
+
+/**
+ * Creates an app icon for the dock.
+ *
+ * Other extensions can replace Shell.App.create_icon_texture() and return
+ * their own actor instead of an St.Icon; "Dynamic Calendar, Clocks and
+ * Weather Icons", for example, paints the date on an St.DrawingArea at the
+ * size it was asked for. Resizing such an actor crops or overflows the
+ * drawing, so it is created at the zoomed size and scaled down to fit.
+ *
+ * @returns {{actor: Clutter.Actor, crispIcon: St.Icon|null}} crispIcon is
+ *   the St.Icon whose resolution can follow the hover zoom, if any.
+ */
+export function createAppIcon(app, size, zoomSize = size) {
+    const icon = app.create_icon_texture(size);
+    if (icon instanceof St.Icon) {
+        icon.set_size(size, size);
+        return { actor: icon, crispIcon: icon };
+    }
+
+    let custom = icon;
+    if (zoomSize > size) {
+        icon.destroy();
+        custom = app.create_icon_texture(zoomSize);
+    }
+    return { actor: fitIconActor(custom, size), crispIcon: null };
+}
+
 export function attachCrispIcon(btn, icon, restSize, zoomSize) {
     btn._crispIcon = icon;
     btn._crispRestSize = restSize;
@@ -121,6 +170,7 @@ export function attachCrispIcon(btn, icon, restSize, zoomSize) {
 
 export function setCrispIconHiRes(btn, hiRes) {
     if (!btn._crispIcon || btn._crispHiRes === hiRes || !isActorAlive(btn._crispIcon)) return;
+    if (typeof btn._crispIcon.set_icon_size !== 'function') return;
     btn._crispHiRes = hiRes;
     btn._crispIcon.set_icon_size(hiRes ? btn._crispZoomSize : btn._crispRestSize);
 }

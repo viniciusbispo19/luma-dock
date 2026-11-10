@@ -34,7 +34,7 @@ import { EmojiPicker } from './EmojiPicker.js';
 import { Settings } from '../../core/SettingsManager.js';
 import { getIndicatorProps } from '../dock/DockRenderer.js';
 import { CrispLabel } from '../modules/music/CrispLabel.js';
-import { createIndicatorBox } from '../dock/DockButtonBase.js';
+import { createIndicatorBox, createAppIcon } from '../dock/DockButtonBase.js';
 import AppContextMenu from '../context-menu/AppContextMenu.js';
 import { setBoxVertical, isActorAlive } from '../../core/Utils.js';
 import { iconConfigDir, deleteCustomFolderIcon, pickIconImage, cancelIconPicker } from './FolderIconFiles.js';
@@ -705,7 +705,7 @@ export class FolderMenuBuilder {
             });
 
             const iconBin = new St.Bin({
-                child: app.create_icon_texture(iconSize),
+                child: createAppIcon(app, iconSize).actor,
                 reactive: false,
                 x_align: Clutter.ActorAlign.CENTER,
                 y_align: Clutter.ActorAlign.CENTER,

@@ -29,7 +29,7 @@ import { BlurPanel } from '../blur/BlurPanel.js';
 import { getIndicatorProps } from './DockRenderer.js';
 import { Settings } from '../../core/SettingsManager.js';
 import { paintMenuBubble } from '../shared/MenuShape.js';
-import { createIndicatorBox } from './DockButtonBase.js';
+import { createIndicatorBox, createAppIcon } from './DockButtonBase.js';
 import { createWindowThumbnail } from './MinimizedWindowButton.js';
 import { animateRestore } from '../effects/WindowEffects.js';
 import { createPlateIcon, createCrispBundledIcon, getZoomRenderSize } from './DockItemBuilder.js';
@@ -393,7 +393,7 @@ export class DockOverflowMenu {
             width: iconSize,
             height: iconSize,
         });
-        iconStack.add_child(isMinimized ? createWindowThumbnail(item.entity, iconSize).actor : app.create_icon_texture(iconSize));
+        iconStack.add_child(isMinimized ? createWindowThumbnail(item.entity, iconSize).actor : createAppIcon(app, iconSize).actor);
 
         if (item.isRunning && Settings.showRunningIndicators) {
             const style = Settings.indicatorStyle;
