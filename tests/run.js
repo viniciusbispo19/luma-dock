@@ -30,6 +30,7 @@ import './MagnifierMath.test.js';
 import './LaunchMatcher.test.js';
 import './WindowFilter.test.js';
 import './FanLayout.test.js';
+import './PlayerChoice.test.js';
 
 
 System.exit(runAll() > 0 ? 1 : 0);

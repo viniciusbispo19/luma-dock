@@ -23,6 +23,7 @@ import Shell from 'gi://Shell';
 import GObject from 'gi://GObject';
 
 import { TimeoutTracker } from '../../../core/TimeoutTracker.js';
+import { choosePlayer } from '../../../core/PlayerChoice.js';
 import { animateMinimize, animateRestore } from '../../effects/WindowEffects.js';
 
 
@@ -146,6 +147,7 @@ export const MusicPlayerService = GObject.registerClass({
                     if (this._players.get(busName) !== entry) return;
 
                     entry.proxy = proxy;
+                    entry.lastActive = this._isEntryPlaying(entry) ? monotonicMs() : 0;
                     proxy.connectObject(
                         'g-properties-changed', (_proxy, changed) => this._onPlayerChanged(entry, changed.deepUnpack()),
                         'g-signal', (_proxy, _sender, signalName, params) => {
@@ -200,6 +202,15 @@ export const MusicPlayerService = GObject.registerClass({
             return Boolean(status) && status.unpack() === 'Playing';
         }
 
+        // True when the player has a song or video loaded. A browser keeps its
+        // player after the tab closes, but with empty metadata.
+        _entryHasTrack(entry) {
+            const metaV = entry.proxy ? entry.proxy.get_cached_property('Metadata') : null;
+            if (!metaV) return false;
+            const meta = metaV.deepUnpack();
+            return Boolean(meta['xesam:title'] && this._extractVariantString(meta['xesam:title']));
+        }
+
         _chooseActive() {
             const ready = [...this._players.values()].filter(entry => entry.proxy);
             if (ready.length === 0) {
@@ -207,16 +218,14 @@ export const MusicPlayerService = GObject.registerClass({
                 return;
             }
 
-            const pinned = this._pinnedBus ? this._players.get(this._pinnedBus) : null;
-            const current = this._players.get(this._activePlayerBus);
-            const hasCurrent = Boolean(current) && Boolean(current.proxy);
+            const nextBus = choosePlayer(ready.map(entry => ({
+                busName: entry.busName,
+                isPlaying: this._isEntryPlaying(entry),
+                hasTrack: this._entryHasTrack(entry),
+                lastActive: entry.lastActive || 0,
+            })), { currentBus: this._activePlayerBus, pinnedBus: this._pinnedBus });
 
-            let next;
-            if (pinned && pinned.proxy) next = pinned;
-            else if (hasCurrent && this._isEntryPlaying(current)) next = current;
-            else next = ready.find(entry => this._isEntryPlaying(entry)) || (hasCurrent ? current : ready[0]);
-
-            if (next.busName !== this._activePlayerBus) this._setActive(next.busName);
+            if (nextBus && nextBus !== this._activePlayerBus) this._setActive(nextBus);
         }
 
         _setActive(busName) {
@@ -238,12 +247,23 @@ export const MusicPlayerService = GObject.registerClass({
         }
 
         _onPlayerChanged(entry, changed) {
+            if (changed.PlaybackStatus && changed.PlaybackStatus.unpack() === 'Playing') entry.lastActive = monotonicMs();
+
+            // Pick the player first: if this change makes another player the
+            // one to show (e.g. the browser emptied after its tab closed while
+            // Spotify is paused), switch straight to it. Reporting the empty
+            // player first would hide the pill for a moment.
+            if (changed.PlaybackStatus || changed.Metadata) {
+                const previousBus = this._activePlayerBus;
+                this._chooseActive();
+                if (this._activePlayerBus !== previousBus) return;
+            }
+
             if (entry.busName === this._activePlayerBus) {
                 if (changed.PlaybackStatus) this._setPlaying(changed.PlaybackStatus.unpack() === 'Playing');
                 if (changed.Metadata) this._parseMetadata(changed.Metadata.deepUnpack());
                 this._emitChange();
             }
-            if (changed.PlaybackStatus) this._chooseActive();
         }
 
         get players() {
