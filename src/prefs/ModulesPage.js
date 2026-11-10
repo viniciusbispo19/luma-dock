@@ -156,6 +156,9 @@ export function buildModulesPage(prefs, window, settings) {
     const oldIconRow = addSwitchRow(gridGroup, settings, 'use-old-grid-icon', _('Classic Grid Icon'),
         _('Dotted grid instead of the Luma Dock logo'));
     const gridColorRow = addColorRow(gridGroup, settings, 'grid-icon-color', _('Grid Icon Colour'));
+    const gridAnimationRow = addSwitchRow(gridGroup, settings, 'animate-grid-button', _('Hover Animation'),
+        _('Grow and move along with the other icons when the pointer passes over. When off, the button keeps still'));
+    showWhen(gridAnimationRow, settings, ['show-grid-button'], showGrid);
     showWhen(scaleRow, settings, ['show-grid-button', 'custom-grid-icon'], () => showGrid() && hasCustomIcon());
     showWhen(oldIconRow, settings, ['show-grid-button', 'custom-grid-icon'], () => showGrid() && !hasCustomIcon());
     showWhen(gridColorRow, settings, ['show-grid-button', 'custom-grid-icon', 'use-old-grid-icon'],

@@ -91,7 +91,7 @@ const WATCHED_SETTINGS = [
     'separator-color', 'separator-opacity', 'running-separator-width', 'running-separator-height',
     'running-separator-color', 'running-separator-opacity', 'show-panel-separator', 'panel-separator-width',
     'panel-separator-height', 'panel-separator-color', 'panel-separator-opacity', 'grid-icon-color', 'custom-grid-icon',
-    'custom-grid-icon-scale', 'use-old-grid-icon', 'app-folders', 'show-unpinned-apps', 'ignored-window-classes', 'music-pill-separator',
+    'custom-grid-icon-scale', 'use-old-grid-icon', 'animate-grid-button', 'app-folders', 'show-unpinned-apps', 'ignored-window-classes', 'music-pill-separator',
     'desktop-btn-width', 'desktop-btn-opacity', 'desktop-btn-color', 'show-independent-in-overview',
     'indicator-color-mode', 'autohide-animation-speed', 'window-effect-speed'
 ];

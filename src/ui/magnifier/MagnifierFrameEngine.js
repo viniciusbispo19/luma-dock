@@ -331,12 +331,16 @@ export function applyRealtimeFrame(dockActor, cx, cy, isVertical, settings, now 
     clusterEnvelope = clusterEnvelope * clusterEnvelope * (3.0 - 2.0 * clusterEnvelope);
 
     const pointerAxis = isVertical ? cy : cx;
-    const pointerOnClock = btns.some(b => {
-        if (!isActorAlive(b) || !b.visible || !(b.get_style_class_name() || '').includes('clock-module')) return false;
+    // Hovering the clock, or the App Grid button when it is set to keep still,
+    // calms the whole dock: no item zooms, so it never moves under the pointer.
+    const pointerOnCalmItem = btns.some(b => {
+        if (!isActorAlive(b) || !b.visible) return false;
+        const isStillGridButton = b._isGridBtn && b._isStatic;
+        if (!isStillGridButton && !(b.get_style_class_name() || '').includes('clock-module')) return false;
         const [spanStart, spanEnd] = axisSpan(b, isVertical);
         return pointerAxis >= spanStart && pointerAxis <= spanEnd;
     });
-    const zoomEnvelope = pointerOnClock ? 0.0 : clusterEnvelope;
+    const zoomEnvelope = pointerOnCalmItem ? 0.0 : clusterEnvelope;
 
     if (clusterEnvelope <= 0.001) {
         hideTooltip(dockActor);
@@ -472,7 +476,7 @@ export function applyRealtimeFrame(dockActor, cx, cy, isVertical, settings, now 
         anglesX[i] = 0;
         magOffsets[i] = 0;
 
-        if (zoomEnabled && !pointerOnClock && !isStaticItem(btns[i])) {
+        if (zoomEnabled && !pointerOnCalmItem && !isStaticItem(btns[i])) {
             const delta = effectiveCursor - orderedSlots[orderIndex];
             const dist = Math.abs(delta);
             const ratio = dist / RADIUS;

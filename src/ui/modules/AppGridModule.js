@@ -158,11 +158,16 @@ export function buildAppGridModule(dockUI, iconSize, actualMaxZoom) {
     gridModule.set_pivot_point(0.5, 0.5);
     gridModule._hasRunningIndicator = false;
     gridModule._isGridBtn = true;
+    // With 'animate-grid-button' off the button keeps still on hover: as a
+    // static item the magnifier leaves it at its normal size, with no rise
+    // or tilt, and the hover background below is skipped.
+    const animateOnHover = Settings.animateGridButton;
+    gridModule._isStatic = !animateOnHover;
     attachCrispIcon(gridModule, gridIcon, gridIconSize, gridRenderSize);
     gridModule.set_style('background-color: transparent;');
 
     gridModule.connectObject('notify::hover', () => {
-        if (Settings.hoverZoom) return;
+        if (!animateOnHover || Settings.hoverZoom) return;
 
         if (Settings.hoverAnimation) {
             setHoverBgLength(hoverBg, isVerticalDock, gridModule.hover ? compactExpanded : compactCollapsed);

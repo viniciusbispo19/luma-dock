@@ -160,6 +160,7 @@ const KEYS = {
     showGridButton: [BOOLEAN, 'show-grid-button'],
     gridButtonPosition: [STRING, 'grid-button-position'],
     useOldGridIcon: [BOOLEAN, 'use-old-grid-icon'],
+    animateGridButton: [BOOLEAN, 'animate-grid-button'],
     gridIconColor: [STRING, 'grid-icon-color'],
     customGridIconScale: [INT, 'custom-grid-icon-scale'],
     showClock: [BOOLEAN, 'show-clock'],

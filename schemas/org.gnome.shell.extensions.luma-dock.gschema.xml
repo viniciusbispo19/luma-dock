@@ -509,6 +509,12 @@
       <summary>Notification Badge Custom Color</summary>
     </key>
 
+    <key name="animate-grid-button" type="b">
+      <default>false</default>
+      <summary>Animate the App Grid button on hover</summary>
+      <description>When off, the App Grid button keeps still while the pointer passes over the dock: no hover zoom and no hover background.</description>
+    </key>
+
     <key name="folder-click-action" type="s">
       <choices>
         <choice value='fan'/>
