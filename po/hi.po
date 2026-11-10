@@ -1,0 +1,2830 @@
+# Hindi translations for Luma Dock
+# Copyright (C) 2026 NarkAgni
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Luma Dock\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-10 09:20-0300\n"
+"PO-Revision-Date: 2026-10-05 21:55+0530\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/core/panel/TrayMenu.js:215 src/core/panel/TrayMenu.js:224
+msgid "Manage tray"
+msgstr ""
+
+#: src/core/panel/TrayMenu.js:215 src/prefs/PanelPage.js:530
+msgid "Tray"
+msgstr ""
+
+#: src/core/panel/TrayMenu.js:222
+msgid "Done"
+msgstr ""
+
+#: src/core/panel/TrayMenu.js:350 src/core/panel/TrayMenu.js:520
+msgid "No icons in the tray"
+msgstr ""
+
+#: src/core/panel/TrayMenu.js:520
+msgid "In tray"
+msgstr ""
+
+#: src/core/panel/TrayMenu.js:524
+msgid "Show on panel"
+msgstr ""
+
+#: src/core/panel/TrayMenu.js:528
+msgid "On panel"
+msgstr ""
+
+#: src/core/panel/TrayMenu.js:528
+msgid "Nothing on the panel"
+msgstr ""
+
+#: src/core/panel/TrayMenu.js:529
+msgid "Move to tray"
+msgstr ""
+
+#: src/core/panel/TrayMenu.js:536
+msgid "Wide applets get their own row in the tray"
+msgstr ""
+
+#: src/core/panel/TrayMenu.js:541 src/prefs/ModulesPage.js:771
+#: src/prefs/PanelPage.js:537
+#, fuzzy
+msgid "Reset"
+msgstr "प्रीसेट"
+
+#: src/core/FolderManager.js:56 src/core/FolderManager.js:59
+#: src/core/FolderManager.js:69 src/ui/context-menu/AppContextMenu.js:51
+#: src/ui/modules/SystemFoldersModule.js:89
+#: src/ui/startmenu/StartMenuData.js:518 src/ui/DragDrop.js:201
+msgid "New Folder"
+msgstr "नया फ़ोल्डर"
+
+#: src/prefs/AboutPage.js:35
+msgid "About"
+msgstr "परिचय"
+
+#: src/prefs/AboutPage.js:67
+msgid "A beautifully crafted, highly customisable dock for GNOME Shell"
+msgstr "GNOME Shell के लिए एक सुंदर और अत्यधिक कस्टमाइज़ करने योग्य डॉक"
+
+#: src/prefs/AboutPage.js:72
+msgid "Version"
+msgstr ""
+
+#: src/prefs/AboutPage.js:83
+msgid "Links"
+msgstr "लिंक्स"
+
+#: src/prefs/AboutPage.js:108
+msgid "GitHub Repository"
+msgstr "GitHub रिपॉजिटरी"
+
+#: src/prefs/AboutPage.js:109
+msgid "Original Project"
+msgstr ""
+
+#: src/prefs/AboutPage.js:114
+msgid "Credits"
+msgstr "क्रेडिट"
+
+#: src/prefs/AboutPage.js:120
+#, fuzzy
+msgid "Luma Dock Maintainer"
+msgstr "ध्रुव सेटिंग्स"
+
+#: src/prefs/AboutPage.js:126
+msgid "Author of Dhruva, the original project"
+msgstr ""
+
+#: src/prefs/AboutPage.js:131
+msgid "Features"
+msgstr "विशेषताएँ"
+
+#: src/prefs/AboutPage.js:132
+#, fuzzy
+msgid ""
+"Per-app running indicators · Hover zoom magnification · Window minimize "
+"effects (Magic Lamp, Snake, Vortex &amp; more) · Icon click animations "
+"(Bounce, Jelly, Heartbeat &amp; 20+ styles) · Intelligent auto-hide with "
+"edge pressure reveal · Chameleon theme (wallpaper colour matching) · Full-"
+"width dock mode · Multi-monitor support · Custom folders, Trash, Desktop "
+"button &amp; App Grid · Workspace isolation · Aero Peek window previews · "
+"Lock icons to prevent accidental reorder"
+msgstr ""
+"ऐप रनिंग इंडिकेटर · होवर ज़ूम आवर्धन · विंडो मिनिमाइज़ प्रभाव (मैजिक लैंप, स्नेक, वोर्टेक्स "
+"आदि) · आइकन क्लिक एनिमेशन (बाउंस, जेली, हार्टबीट और 20+ शैलियाँ) · एज प्रेशर रीवील के "
+"साथ इंटेलिजेंट ऑटो-हाइड · गिरगिट थीम (वॉलपेपर रंग मिलान) · फुल-विड्थ डॉक मोड · मल्टी-"
+"मॉनिटर समर्थन · कस्टम फ़ोल्डर्स, ट्रैश, डेस्कटॉप बटन और ऐप ग्रिड · वर्कस्पेस आइसोलेशन · "
+"एरो पीक विंडो पूर्वावलोकन · आइकन लॉक"
+
+#: src/prefs/AboutPage.js:137
+msgid "Disclaimer"
+msgstr "अस्वीकरण"
+
+#: src/prefs/AboutPage.js:138
+msgid ""
+"Luma Dock is an independent fork of Dhruva, released under the GPL-3.0 "
+"license, and is not an official release of the original project."
+msgstr ""
+
+#: src/prefs/AppearancePage.js:33
+msgid "Custom Color"
+msgstr "कस्टम रंग"
+
+#: src/prefs/AppearancePage.js:34
+msgid "Wallpaper Color"
+msgstr "वॉलपेपर रंग"
+
+#: src/prefs/AppearancePage.js:35
+msgid "Carbon"
+msgstr "कार्बन"
+
+#: src/prefs/AppearancePage.js:36
+msgid "Nord"
+msgstr "नॉर्ड"
+
+#: src/prefs/AppearancePage.js:37
+msgid "Catppuccin Mocha"
+msgstr "कैटपुचिन मोचा"
+
+#: src/prefs/AppearancePage.js:38
+msgid "Gruvbox Dark"
+msgstr "ग्रूवबॉक्स डार्क"
+
+#: src/prefs/AppearancePage.js:39
+msgid "Ash Glass"
+msgstr "ऐश ग्लास"
+
+#: src/prefs/AppearancePage.js:40
+msgid "Dracula"
+msgstr "ड्रैकुला"
+
+#: src/prefs/AppearancePage.js:41
+msgid "Tokyo Night"
+msgstr "टोक्यो नाइट"
+
+#: src/prefs/AppearancePage.js:42
+msgid "Aurora"
+msgstr "अरोरा"
+
+#: src/prefs/AppearancePage.js:43
+msgid "Sunset"
+msgstr "सनसेट"
+
+#: src/prefs/AppearancePage.js:44
+msgid "Slate Ocean"
+msgstr "स्लेट ओशन"
+
+#: src/prefs/AppearancePage.js:239
+msgid "Appearance"
+msgstr "दिखावट"
+
+#: src/prefs/AppearancePage.js:248
+msgid "Your Dock"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:248
+msgid "Changes show up here as you make them"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:251 src/prefs/AppearancePage.js:283
+#: src/prefs/BlurPage.js:307
+#, fuzzy
+msgid "Background"
+msgstr "पृष्ठभूमि अपारदर्शिता"
+
+#: src/prefs/AppearancePage.js:253
+#, fuzzy
+msgid "Theme"
+msgstr "डॉक थीम"
+
+#: src/prefs/AppearancePage.js:253
+msgid "A ready palette, or your own colours"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:256
+msgid "Matching your wallpaper"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:257
+#, fuzzy
+msgid "Dock and indicator colours follow the current wallpaper"
+msgstr "डॉक रंग और इंडिकेटर आपके वॉलपेपर से अपने आप अपडेट होते हैं"
+
+#: src/prefs/AppearancePage.js:265 src/prefs/AppearancePage.js:314
+#: src/prefs/AppearancePage.js:329 src/prefs/AppearancePage.js:346
+#, fuzzy
+msgid "Colour"
+msgstr "रंग"
+
+#: src/prefs/AppearancePage.js:266
+#, fuzzy
+msgid "Gradient"
+msgstr "ग्रेडिएंट का उपयोग करें"
+
+#: src/prefs/AppearancePage.js:266
+#, fuzzy
+msgid "Blend into a second colour"
+msgstr "दूसरे रंग के साथ सम्मिश्रण करें"
+
+#: src/prefs/AppearancePage.js:267
+#, fuzzy
+msgid "Second Colour"
+msgstr "द्वितीयक रंग"
+
+#: src/prefs/AppearancePage.js:268
+#, fuzzy
+msgid "Direction"
+msgstr "ग्रेडिएंट दिशा"
+
+#: src/prefs/AppearancePage.js:269
+msgid "Vertical"
+msgstr "लंबवत (Vertical)"
+
+#: src/prefs/AppearancePage.js:270
+msgid "Horizontal"
+msgstr "क्षैतिज (Horizontal)"
+
+#: src/prefs/AppearancePage.js:272 src/prefs/AppearancePage.js:347
+msgid "Opacity"
+msgstr "अपारदर्शिता"
+
+#: src/prefs/AppearancePage.js:272
+#, fuzzy
+msgid "Background opacity of dock and panel"
+msgstr "पृष्ठभूमि अपारदर्शिता"
+
+#: src/prefs/AppearancePage.js:273
+msgid "Menu &amp; Popup Opacity"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:274
+msgid "Background opacity of context menus, folders, tray and overflow popups"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:285
+#, fuzzy
+msgid "Blur is on"
+msgstr "ब्लर मोड"
+
+#: src/prefs/AppearancePage.js:286
+msgid "The dock is made of glass now. Its look is set on the Blur page"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:290 src/prefs/LayoutPage.js:211
+msgid "Shape"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:292 src/prefs/PanelPage.js:485
+#, fuzzy
+msgid "Corner Radius"
+msgstr "बॉर्डर त्रिज्या (Radius)"
+
+#: src/prefs/AppearancePage.js:293
+msgid "Outline"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:293
+msgid "Line around the dock, 0 hides it"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:295
+#, fuzzy
+msgid "Outline Colour"
+msgstr "टिन्ट रंग"
+
+#: src/prefs/AppearancePage.js:296
+#, fuzzy
+msgid "Outline Opacity"
+msgstr "टिन्ट अपारदर्शिता"
+
+#: src/prefs/AppearancePage.js:303 src/prefs/BehaviorPage.js:256
+#, fuzzy
+msgid "Running Apps"
+msgstr "रनिंग इंडिकेटर"
+
+#: src/prefs/AppearancePage.js:306
+msgid "Indicators"
+msgstr "संकेतक (Indicators)"
+
+#: src/prefs/AppearancePage.js:306
+msgid "Marks under apps that are open"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:307
+#, fuzzy
+msgid "Style"
+msgstr "पैनल शैली"
+
+#: src/prefs/AppearancePage.js:308
+msgid "Dot"
+msgstr "बिंदु (Dot)"
+
+#: src/prefs/AppearancePage.js:309
+msgid "Dash"
+msgstr "डैश (Dash)"
+
+#: src/prefs/AppearancePage.js:310
+msgid "Line"
+msgstr "रेखा (Line)"
+
+#: src/prefs/AppearancePage.js:311
+msgid "Square"
+msgstr "वर्ग (Square)"
+
+#: src/prefs/AppearancePage.js:312 src/prefs/BlurPage.js:295
+msgid "Dynamic"
+msgstr "डायनामिक"
+
+#: src/prefs/AppearancePage.js:315
+#, fuzzy
+msgid "From Icon"
+msgstr "आइकन लॉक करें"
+
+#: src/prefs/AppearancePage.js:316 src/prefs/AppearancePage.js:331
+#: src/prefs/BlurPage.js:435 src/prefs/PanelPage.js:55
+#, fuzzy
+msgid "Custom"
+msgstr "कस्टम फ़ोटो"
+
+#: src/prefs/AppearancePage.js:318 src/prefs/AppearancePage.js:333
+#, fuzzy
+msgid "Custom Colour"
+msgstr "कस्टम रंग"
+
+#: src/prefs/AppearancePage.js:319
+msgid "Size"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:320 src/prefs/BlurPage.js:482
+#: src/prefs/BehaviorPage.js:58
+msgid "Glow"
+msgstr "ग्लो"
+
+#: src/prefs/AppearancePage.js:320
+#, fuzzy
+msgid "A soft light around the indicator"
+msgstr "इंडिकेटर का आकार"
+
+#: src/prefs/AppearancePage.js:328
+#, fuzzy
+msgid "Notification Badges"
+msgstr "सूचना बैज दिखाएँ"
+
+#: src/prefs/AppearancePage.js:328
+#, fuzzy
+msgid "Unread counts on app icons"
+msgstr "ऐप आइकन पर अपठित संदेशों की संख्या प्रदर्शित करें"
+
+#: src/prefs/AppearancePage.js:330
+msgid "Accent"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:336
+#, fuzzy
+msgid "Preview Box Opacity"
+msgstr "होवर बॉक्स अपारदर्शिता"
+
+#: src/prefs/AppearancePage.js:337
+msgid "Background of the hover preview and app highlight"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:341
+msgid "Separators"
+msgstr "विभाजक (Separators)"
+
+#: src/prefs/AppearancePage.js:343 src/prefs/LayoutPage.js:226
+msgid "Thickness"
+msgstr "मोटाई"
+
+#: src/prefs/AppearancePage.js:344
+msgid "Length"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:344
+#, fuzzy
+msgid "Share of the dock height"
+msgstr "इंडिकेटर का आकार"
+
+#: src/prefs/AppearancePage.js:350
+msgid "Between Pinned and Running"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:350
+#, fuzzy
+msgid "Divides your pinned apps from other open apps"
+msgstr "पिन किए गए ऐप्स को चल रहे ऐप्स से अलग करता है"
+
+#: src/prefs/AppearancePage.js:352
+#, fuzzy
+msgid "Before Modules"
+msgstr "डॉक मॉड्यूल"
+
+#: src/prefs/AppearancePage.js:352
+msgid "Divides apps from clock, launcher and folders"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:354
+msgid "Before Top Bar Items"
+msgstr ""
+
+#: src/prefs/AppearancePage.js:354
+msgid "Centred between icons and the top bar status area in dynamic panel mode"
+msgstr ""
+
+#: src/prefs/BlurPage.js:44
+msgid "Abstract Dark"
+msgstr "एब्सट्रैक्ट डार्क"
+
+#: src/prefs/BlurPage.js:45
+msgid "Aurora Borealis"
+msgstr "अरोरा बोरेलिस"
+
+#: src/prefs/BlurPage.js:46
+msgid "Sunset Glow"
+msgstr "सनसेट ग्लो"
+
+#: src/prefs/BlurPage.js:47
+msgid "Cyberpunk Neon"
+msgstr "साइबरपंक नियॉन"
+
+#: src/prefs/BlurPage.js:48
+msgid "Minimal Slate"
+msgstr "मिनिमल स्लेट"
+
+#: src/prefs/BlurPage.js:52
+msgid "Crystal"
+msgstr ""
+
+#: src/prefs/BlurPage.js:53
+msgid "Frosted"
+msgstr ""
+
+#: src/prefs/BlurPage.js:54
+msgid "Vivid"
+msgstr ""
+
+#: src/prefs/BlurPage.js:55
+#, fuzzy
+msgid "Midnight"
+msgstr "दायाँ"
+
+#: src/prefs/BlurPage.js:245
+#, fuzzy
+msgid "Blur off"
+msgstr "ब्लर मोड"
+
+#: src/prefs/BlurPage.js:246
+#, fuzzy
+msgid "Static blur"
+msgstr "स्टैटिक"
+
+#: src/prefs/BlurPage.js:246
+#, fuzzy
+msgid "Dynamic blur"
+msgstr "डायनामिक"
+
+#: src/prefs/BlurPage.js:265 src/prefs/BlurPage.js:472
+msgid "Blur"
+msgstr "ब्लर (धुंधलापन)"
+
+#: src/prefs/BlurPage.js:282
+msgid "Blur Material"
+msgstr "ब्लर मटेरियल"
+
+#: src/prefs/BlurPage.js:282
+#, fuzzy
+msgid "Frosted glass behind the dock, menus and panels"
+msgstr "ध्रुव डॉक, मेनू और पैनल पर अपवर्तक बैकड्रॉप ब्लर लागू करें"
+
+#: src/prefs/BlurPage.js:290
+#, fuzzy
+msgid "Mode"
+msgstr "ब्लर मोड"
+
+#: src/prefs/BlurPage.js:296
+msgid "Follows windows and wallpaper behind the dock in real time"
+msgstr ""
+
+#: src/prefs/BlurPage.js:301
+msgid "Static"
+msgstr "स्टैटिक"
+
+#: src/prefs/BlurPage.js:302
+msgid "Blurs a fixed image once. Lightest on battery and GPU"
+msgstr ""
+
+#: src/prefs/BlurPage.js:307
+msgid "The image that static blur is made from"
+msgstr ""
+
+#: src/prefs/BlurPage.js:309 src/prefs/PresetsPage.js:60
+#, fuzzy
+msgid "Presets"
+msgstr "प्रीसेट"
+
+#: src/prefs/BlurPage.js:310 src/prefs/BlurPage.js:365
+#, fuzzy
+msgid "Your Photo"
+msgstr "कस्टम फ़ोटो"
+
+#: src/prefs/BlurPage.js:375 src/prefs/ModulesPage.js:67
+msgid "Choose…"
+msgstr ""
+
+#: src/prefs/BlurPage.js:380
+#, fuzzy
+msgid "Remove photo"
+msgstr "फ़ोल्डर हटाएँ"
+
+#: src/prefs/BlurPage.js:393
+msgid "Pick another image to replace it"
+msgstr ""
+
+#: src/prefs/BlurPage.js:394
+msgid "Pick an image and choose which strip of it sits behind the dock"
+msgstr ""
+
+#: src/prefs/BlurPage.js:408
+#, fuzzy
+msgid "Glass"
+msgstr "ऐश ग्लास"
+
+#: src/prefs/BlurPage.js:408
+msgid "Start from a look, then fine-tune"
+msgstr ""
+
+#: src/prefs/BlurPage.js:469
+msgid "Tint"
+msgstr ""
+
+#: src/prefs/BlurPage.js:469
+msgid "Colour washed over the glass"
+msgstr ""
+
+#: src/prefs/BlurPage.js:470
+#, fuzzy
+msgid "Tint Strength"
+msgstr "स्लॉट फैलाव शक्ति"
+
+#: src/prefs/BlurPage.js:470
+msgid "How much of the tint shows"
+msgstr ""
+
+#: src/prefs/BlurPage.js:472
+msgid "How soft the background becomes"
+msgstr ""
+
+#: src/prefs/BlurPage.js:474
+msgid "Vibrancy"
+msgstr "जीवंतता (Vibrancy)"
+
+#: src/prefs/BlurPage.js:474
+msgid "Colour saturation seen through the glass"
+msgstr ""
+
+#: src/prefs/BlurPage.js:476
+msgid "Brightness"
+msgstr "चमक (Brightness)"
+
+#: src/prefs/BlurPage.js:476
+msgid "Darker glass on the left, lighter on the right"
+msgstr ""
+
+#: src/prefs/BlurPage.js:480
+#, fuzzy
+msgid "Edge Light"
+msgstr "दाएँ जाएँ"
+
+#: src/prefs/BlurPage.js:480
+msgid "A thin highlight along the rim of the glass"
+msgstr ""
+
+#: src/prefs/BlurPage.js:482
+msgid "Strength of the rim highlight"
+msgstr ""
+
+#: src/prefs/BlurPage.js:484
+#, fuzzy
+msgid "Light Direction"
+msgstr "ग्रेडिएंट दिशा"
+
+#: src/prefs/BlurPage.js:484
+msgid "Where the light falls from"
+msgstr ""
+
+#: src/prefs/BlurPage.js:513 src/prefs/ModulesPage.js:80
+msgid "Images"
+msgstr ""
+
+#: src/prefs/BlurPage.js:518
+#, fuzzy
+msgid "Choose a Background Photo"
+msgstr "कस्टम स्टैटिक बैकग्राउंड"
+
+#: src/prefs/BlurPage.js:569
+#, fuzzy
+msgid "Choose the Strip Behind the Dock"
+msgstr "डॉक के लिए डिस्प्ले चुनें"
+
+#: src/prefs/BlurPage.js:573 src/prefs/ModulesPage.js:239
+#: src/prefs/ModulesPage.js:770 src/ui/context-menu/TrashActionsHandler.js:86
+#: src/ui/folder-menu/FolderMenuBuilder.js:289
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: src/prefs/BlurPage.js:574
+msgid "Use This"
+msgstr ""
+
+#: src/prefs/LayoutPage.js:71
+#, fuzzy
+msgid "Primary monitor"
+msgstr "प्राथमिक मॉनिटर (%s)"
+
+#: src/prefs/LayoutPage.js:74 src/prefs/LayoutPage.js:78
+msgid "Monitor"
+msgstr "मॉनिटर"
+
+#: src/prefs/LayoutPage.js:79
+msgid "Screen that shows the dock"
+msgstr ""
+
+#: src/prefs/LayoutPage.js:101
+msgid "Set Shortcut"
+msgstr "शॉर्टकट सेट करें"
+
+#: src/prefs/LayoutPage.js:119
+#, fuzzy
+msgid ""
+"Press a key combination, e.g. Super+Alt+I\n"
+"Esc cancels, Backspace clears"
+msgstr ""
+"कुंजी संयोजन दबाएँ (उदा. Super+Alt+I या Ctrl+Alt+D)\n"
+"(रद्द करने के लिए Esc, साफ़ करने के लिए Backspace)"
+
+#: src/prefs/LayoutPage.js:154
+msgid "Toggle Shortcut"
+msgstr "टॉगल शॉर्टकट"
+
+#: src/prefs/LayoutPage.js:155
+msgid "Switch independent mode from the keyboard"
+msgstr ""
+
+#: src/prefs/LayoutPage.js:158 src/prefs/ModulesPage.js:325
+#: src/prefs/BehaviorPage.js:51 src/prefs/BehaviorPage.js:168
+msgid "None"
+msgstr "कोई नहीं"
+
+#: src/prefs/LayoutPage.js:162
+#, fuzzy
+msgid "Remove shortcut"
+msgstr "शॉर्टकट रीसेट करें"
+
+#: src/prefs/LayoutPage.js:187
+msgid "Layout"
+msgstr "लेआउट"
+
+#: src/prefs/LayoutPage.js:194
+msgid "Screen Edge"
+msgstr "स्क्रीन का किनारा"
+
+#: src/prefs/LayoutPage.js:194
+#, fuzzy
+msgid "Where the dock lives"
+msgstr "चुनें कि डॉक कब छिपना चाहिए"
+
+#: src/prefs/LayoutPage.js:196
+msgid "Bottom"
+msgstr "नीचे"
+
+#: src/prefs/LayoutPage.js:197 src/prefs/PanelPage.js:480
+msgid "Left"
+msgstr "बायाँ"
+
+#: src/prefs/LayoutPage.js:198 src/prefs/PanelPage.js:482
+msgid "Right"
+msgstr "दायाँ"
+
+#: src/prefs/LayoutPage.js:199
+msgid "Top"
+msgstr "ऊपर"
+
+#: src/prefs/LayoutPage.js:202
+#, fuzzy
+msgid "Monitors"
+msgstr "मॉनिटर"
+
+#: src/prefs/LayoutPage.js:203
+#, fuzzy
+msgid "Every Monitor"
+msgstr "मॉनिटर"
+
+#: src/prefs/LayoutPage.js:203
+#, fuzzy
+msgid "Show a dock on each connected screen"
+msgstr "डॉक को हर कनेक्टेड स्क्रीन पर प्रदर्शित करें"
+
+#: src/prefs/LayoutPage.js:205
+#, fuzzy
+msgid "Apps per Monitor"
+msgstr "मॉनिटर्स अलग रखें"
+
+#: src/prefs/LayoutPage.js:206
+msgid "Each dock shows only the apps open on its own screen"
+msgstr ""
+
+#: src/prefs/LayoutPage.js:211
+msgid "Floating dock or a bar across the whole edge"
+msgstr ""
+
+#: src/prefs/LayoutPage.js:212
+#, fuzzy
+msgid "Full Width"
+msgstr "पूर्ण स्क्रीन चौड़ाई"
+
+#: src/prefs/LayoutPage.js:212
+#, fuzzy
+msgid "Stretch the dock from edge to edge"
+msgstr "डॉक को किनारे से किनारे तक फैलाएँ"
+
+#: src/prefs/LayoutPage.js:213 src/prefs/PanelPage.js:436
+msgid "Icon Alignment"
+msgstr "आइकन संरेखण"
+
+#: src/prefs/LayoutPage.js:214
+msgid "Where icons sit along the full-width bar"
+msgstr ""
+
+#: src/prefs/LayoutPage.js:215 src/prefs/ModulesPage.js:146
+#: src/prefs/ModulesPage.js:634 src/prefs/PanelPage.js:438
+msgid "Start"
+msgstr "आरंभ"
+
+#: src/prefs/LayoutPage.js:216 src/prefs/PanelPage.js:439
+#: src/prefs/PanelPage.js:481
+msgid "Center"
+msgstr "मध्य"
+
+#: src/prefs/LayoutPage.js:217 src/prefs/ModulesPage.js:147
+#: src/prefs/ModulesPage.js:635 src/prefs/PanelPage.js:440
+msgid "End"
+msgstr "अंत"
+
+#: src/prefs/LayoutPage.js:222
+#, fuzzy
+msgid "Size &amp; Spacing"
+msgstr "आकार एवं अंतराल"
+
+#: src/prefs/LayoutPage.js:224 src/prefs/ModulesPage.js:154
+#, fuzzy
+msgid "Icon Size"
+msgstr "मूल आइकन आकार"
+
+#: src/prefs/LayoutPage.js:225
+msgid "Icon Gap"
+msgstr "आइकन अंतर"
+
+#: src/prefs/LayoutPage.js:226
+msgid "Extra room above and below the icons"
+msgstr ""
+
+#: src/prefs/LayoutPage.js:228
+#, fuzzy
+msgid "End Padding"
+msgstr "साइड पैडिंग"
+
+#: src/prefs/LayoutPage.js:229
+msgid "Room at both ends of the dock"
+msgstr ""
+
+#: src/prefs/LayoutPage.js:230
+#, fuzzy
+msgid "Edge Gap"
+msgstr "किनारे का मार्जिन"
+
+#: src/prefs/LayoutPage.js:231
+#, fuzzy
+msgid "Distance from the screen edge"
+msgstr "स्क्रीन के किनारे से दूरी"
+
+#: src/prefs/LayoutPage.js:235
+#, fuzzy
+msgid "Independent Dock"
+msgstr "स्वतंत्र डॉक मोड"
+
+#: src/prefs/LayoutPage.js:236
+msgid "Its own pinned apps and launcher, separate from GNOME favourites"
+msgstr ""
+
+#: src/prefs/LayoutPage.js:240
+#, fuzzy
+msgid "Show in Overview"
+msgstr "ऐप पूर्वावलोकन दिखाएँ"
+
+#: src/prefs/LayoutPage.js:241
+#, fuzzy
+msgid "Keep the dock on the left side during the overview"
+msgstr "ओवरव्यू के दौरान डॉक को बाईं ओर दिखाता है"
+
+#: src/prefs/Presets.js:67
+#, fuzzy
+msgid "Fresh Start"
+msgstr "आरंभ"
+
+#: src/prefs/Presets.js:68
+msgid "A plain dock with only running dots. Set it up your own way"
+msgstr ""
+
+#: src/prefs/Presets.js:73
+msgid "GNOME Classic+"
+msgstr ""
+
+#: src/prefs/Presets.js:74
+msgid "Looks like the GNOME dash, with nothing extra"
+msgstr ""
+
+#: src/prefs/Presets.js:84
+msgid "macOS Dock"
+msgstr ""
+
+#: src/prefs/Presets.js:85
+msgid "A light dock that magnifies under the pointer and bounces on click"
+msgstr ""
+
+#: src/prefs/Presets.js:101
+msgid "Windows 11 Taskbar"
+msgstr ""
+
+#: src/prefs/Presets.js:102
+msgid "One dark bar with centered apps, start menu, tray and clock"
+msgstr ""
+
+#: src/prefs/Presets.js:116
+msgid "Classic Taskbar"
+msgstr ""
+
+#: src/prefs/Presets.js:117
+msgid "A solid edge-to-edge bar with apps starting on the left"
+msgstr ""
+
+#: src/prefs/Presets.js:131
+msgid "Floating Island"
+msgstr ""
+
+#: src/prefs/Presets.js:132
+msgid "A compact panel that floats in the middle above your windows"
+msgstr ""
+
+#: src/prefs/Presets.js:146
+msgid "Ubuntu Dock"
+msgstr ""
+
+#: src/prefs/Presets.js:147
+msgid "A full-height dock fixed to the left side of the screen"
+msgstr ""
+
+#: src/prefs/Presets.js:160
+#, fuzzy
+msgid "Minimal"
+msgstr "मिनिमल स्लेट"
+
+#: src/prefs/Presets.js:161
+msgid "Small icons and nothing else"
+msgstr ""
+
+#: src/prefs/Presets.js:173
+#, fuzzy
+msgid "Showcase"
+msgstr "इंडिकेटर दिखाएँ"
+
+#: src/prefs/Presets.js:174
+msgid "Every effect turned up, with colours from your wallpaper"
+msgstr ""
+
+#: src/prefs/ResetButtons.js:45
+msgid "Reset all in this group"
+msgstr "इस समूह में सभी को रीसेट करें"
+
+#: src/prefs/ModulesPage.js:61
+msgid "Your Own Icon"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:62
+#, fuzzy
+msgid "Square image, 256 or 512 px (.png, .svg, .ico)"
+msgstr "आकार: 256x256 या 512x512 (.png, .svg, .ico)"
+
+#: src/prefs/ModulesPage.js:70
+#, fuzzy
+msgid "Back to the default icon"
+msgstr "डिफ़ॉल्ट आइकन पर रीसेट करें"
+
+#: src/prefs/ModulesPage.js:85
+msgid "Choose a Launcher Icon"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:120
+msgid "Modules"
+msgstr "मॉड्यूल"
+
+#: src/prefs/ModulesPage.js:137
+#, fuzzy
+msgid "App Launcher"
+msgstr "ऐप ड्रॉअर लॉन्चर"
+
+#: src/prefs/ModulesPage.js:137
+msgid "Opens your list of applications"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:144 src/prefs/ModulesPage.js:633
+#: src/prefs/PanelPage.js:478
+#, fuzzy
+msgid "Position"
+msgstr "स्थिति:"
+
+#: src/prefs/ModulesPage.js:145
+#, fuzzy
+msgid "Far Edge"
+msgstr "स्क्रीन का किनारा"
+
+#: src/prefs/ModulesPage.js:156
+#, fuzzy
+msgid "Classic Grid Icon"
+msgstr "कस्टम ऐप ग्रिड आइकन"
+
+#: src/prefs/ModulesPage.js:157
+#, fuzzy
+msgid "Dotted grid instead of the Luma Dock logo"
+msgstr "ध्रुव लोगो के बजाय डिफ़ॉल्ट डॉटेड ग्रिड आइकन दिखाएँ"
+
+#: src/prefs/ModulesPage.js:158
+#, fuzzy
+msgid "Grid Icon Colour"
+msgstr "ऐप ग्रिड बटन का रंग"
+
+#: src/prefs/ModulesPage.js:164 src/ui/modules/DockModules.js:395
+msgid "Show Desktop"
+msgstr "डेस्कटॉप दिखाएँ"
+
+#: src/prefs/ModulesPage.js:164
+msgid "One click hides every window"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:170
+#, fuzzy
+msgid "Strip Width"
+msgstr "स्ट्रोक चौड़ाई"
+
+#: src/prefs/ModulesPage.js:170
+msgid "The thin strip at the end of the bar"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:172
+#, fuzzy
+msgid "Strip Colour"
+msgstr "स्ट्रोक रंग"
+
+#: src/prefs/ModulesPage.js:173
+#, fuzzy
+msgid "Strip Opacity"
+msgstr "स्ट्रोक अपारदर्शिता"
+
+#: src/prefs/ModulesPage.js:181
+msgid "Places"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:181
+#, fuzzy
+msgid "Shortcuts that open in your file manager"
+msgstr "ऐप का नया उदाहरण (इंस्टेंस) खोलने के लिए शॉर्टकट"
+
+#: src/prefs/ModulesPage.js:182 src/prefs/ModulesPage.js:204
+#: src/ui/modules/SystemFoldersModule.js:33
+msgid "Home"
+msgstr "होम"
+
+#: src/prefs/ModulesPage.js:183 src/prefs/ModulesPage.js:205
+#: src/ui/modules/SystemFoldersModule.js:52
+msgid "Downloads"
+msgstr "डाउनलोड्स"
+
+#: src/prefs/ModulesPage.js:184 src/prefs/ModulesPage.js:206
+#: src/ui/modules/SystemFoldersModule.js:53
+msgid "Documents"
+msgstr "दस्तावेज़"
+
+#: src/prefs/ModulesPage.js:185 src/prefs/ModulesPage.js:207
+#: src/ui/modules/SystemFoldersModule.js:54
+msgid "Pictures"
+msgstr "चित्र"
+
+#: src/prefs/ModulesPage.js:186 src/prefs/ModulesPage.js:208
+#: src/ui/modules/SystemFoldersModule.js:55
+msgid "Videos"
+msgstr "वीडियो"
+
+#: src/prefs/ModulesPage.js:187 src/prefs/ModulesPage.js:209
+#: src/ui/modules/SystemFoldersModule.js:56
+msgid "Music"
+msgstr "संगीत"
+
+#: src/prefs/ModulesPage.js:188
+#, fuzzy
+msgid "USB &amp; Other Drives"
+msgstr "USB और माउंटेड ड्राइव दिखाएँ"
+
+#: src/prefs/ModulesPage.js:188
+msgid "Appear while they are connected"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:189 src/ui/modules/TrashModule.js:55
+msgid "Recycle Bin"
+msgstr "रीसायकल बिन"
+
+#: src/prefs/ModulesPage.js:191
+#, fuzzy
+msgid "Your Folders"
+msgstr "फ़ोल्डर बंद करें"
+
+#: src/prefs/ModulesPage.js:191
+msgid "Any folder you like, with its own name and icon"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:203
+msgid "System Folder (Default)"
+msgstr "सिस्टम फ़ोल्डर (डिफ़ॉल्ट)"
+
+#: src/prefs/ModulesPage.js:210
+msgid "Public Share"
+msgstr "सार्वजनिक साझा"
+
+#: src/prefs/ModulesPage.js:211
+msgid "Templates"
+msgstr "टेम्पलेट्स"
+
+#: src/prefs/ModulesPage.js:212
+msgid "Desktop"
+msgstr "डेस्कटॉप"
+
+#: src/prefs/ModulesPage.js:213
+msgid "Projects / Code"
+msgstr "प्रोजेक्ट्स / कोड"
+
+#: src/prefs/ModulesPage.js:214
+msgid "Cloud / Remote"
+msgstr "क्लाउड / रिमोट"
+
+#: src/prefs/ModulesPage.js:224
+msgid "Edit Quick Folder"
+msgstr "फ़ोल्डर संपादित करें"
+
+#: src/prefs/ModulesPage.js:224 src/prefs/ModulesPage.js:597
+msgid "Add Quick Folder"
+msgstr "त्वरित फ़ोल्डर जोड़ें"
+
+#: src/prefs/ModulesPage.js:225
+msgid "Update"
+msgstr "अपडेट करें"
+
+#: src/prefs/ModulesPage.js:225
+msgid "Add"
+msgstr "जोड़ें"
+
+#: src/prefs/ModulesPage.js:250
+msgid "Folder Name (e.g. Workspace)"
+msgstr "फ़ोल्डर का नाम (उदा. कार्यस्थान)"
+
+#: src/prefs/ModulesPage.js:257
+msgid "Folder Path"
+msgstr "फ़ोल्डर पथ"
+
+#: src/prefs/ModulesPage.js:267
+msgid "Browse folder..."
+msgstr "फ़ोल्डर ब्राउज़ करें..."
+
+#: src/prefs/ModulesPage.js:273
+msgid "Select Folder"
+msgstr "फ़ोल्डर चुनें"
+
+#: src/prefs/ModulesPage.js:296
+msgid "Preset System Icon"
+msgstr "प्रीसेट सिस्टम आइकन"
+
+#: src/prefs/ModulesPage.js:297
+msgid "Custom Image File"
+msgstr "कस्टम छवि फ़ाइल"
+
+#: src/prefs/ModulesPage.js:298
+msgid "Custom Emoji"
+msgstr "कस्टम इमोजी"
+
+#: src/prefs/ModulesPage.js:302
+msgid "Icon Type"
+msgstr "आइकन प्रकार"
+
+#: src/prefs/ModulesPage.js:308
+msgid "Select Preset Icon"
+msgstr "प्रीसेट आइकन चुनें"
+
+#: src/prefs/ModulesPage.js:313
+msgid "Select Image File"
+msgstr "छवि फ़ाइल चुनें"
+
+#: src/prefs/ModulesPage.js:314
+msgid "PNG, SVG, ICO format"
+msgstr "PNG, SVG, ICO प्रारूप"
+
+#: src/prefs/ModulesPage.js:334
+msgid "Browse..."
+msgstr "ब्राउज़ करें..."
+
+#: src/prefs/ModulesPage.js:340
+msgid "Select Custom Folder Icon Image"
+msgstr "कस्टम फ़ोल्डर आइकन छवि चुनें"
+
+#: src/prefs/ModulesPage.js:343
+msgid "Images (.png, .svg, .ico)"
+msgstr "छवियाँ (.png, .svg, .ico)"
+
+#: src/prefs/ModulesPage.js:390
+msgid "Enter Emoji (Only 1 emoji allowed)"
+msgstr "इमोजी दर्ज करें (केवल 1 इमोजी की अनुमति है)"
+
+#: src/prefs/ModulesPage.js:394
+msgid "Only 1 emoji is allowed. Multiple emojis are not supported."
+msgstr "केवल 1 इमोजी की अनुमति है। एकाधिक इमोजी समर्थित नहीं हैं।"
+
+#: src/prefs/ModulesPage.js:481 src/ui/modules/SystemFoldersModule.js:87
+msgid "Custom Folder"
+msgstr "कस्टम फ़ोल्डर"
+
+#: src/prefs/ModulesPage.js:567
+msgid "Edit folder"
+msgstr "फ़ोल्डर संपादित करें"
+
+#: src/prefs/ModulesPage.js:578
+msgid "Remove folder"
+msgstr "फ़ोल्डर हटाएँ"
+
+#: src/prefs/ModulesPage.js:612 src/prefs/PanelPage.js:522
+#, fuzzy
+msgid "Clock"
+msgstr "घड़ी दिखाएँ"
+
+#: src/prefs/ModulesPage.js:612
+msgid "Date and time on the dock. Hidden on side docks"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:637 src/prefs/PanelPage.js:276
+msgid "24-Hour Time"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:638
+#, fuzzy
+msgid "Text Size"
+msgstr "घड़ी का फ़ॉन्ट आकार"
+
+#: src/prefs/ModulesPage.js:644
+msgid "Backup"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:644
+msgid "Your settings, pinned apps and folders in one file"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:645
+msgid "Export"
+msgstr "निर्यात करें"
+
+#: src/prefs/ModulesPage.js:645
+#, fuzzy
+msgid "Save everything to a file"
+msgstr "अपनी वर्तमान सेटिंग्स और ऐप्स को फ़ाइल में सहेजें"
+
+#: src/prefs/ModulesPage.js:646
+#, fuzzy
+msgid "Export…"
+msgstr "निर्यात करें"
+
+#: src/prefs/ModulesPage.js:651
+msgid "Import"
+msgstr "आयात करें"
+
+#: src/prefs/ModulesPage.js:651
+msgid "Load a file you exported before"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:652
+#, fuzzy
+msgid "Import…"
+msgstr "आयात करें"
+
+#: src/prefs/ModulesPage.js:659
+#, fuzzy
+msgid "Start Over"
+msgstr "आरंभ"
+
+#: src/prefs/ModulesPage.js:660
+#, fuzzy
+msgid "Put every Luma Dock setting back to its default"
+msgstr "ध्रुव डॉक की सभी सेटिंग्स को उनके डिफ़ॉल्ट मानों पर पुनर्स्थापित करें"
+
+#: src/prefs/ModulesPage.js:662
+#, fuzzy
+msgid "Reset All…"
+msgstr "सभी सेटिंग्स रीसेट करें"
+
+#: src/prefs/ModulesPage.js:673
+#, fuzzy
+msgid "Export Luma Dock Settings"
+msgstr "डॉक कॉन्फ़िगरेशन निर्यात करें"
+
+#: src/prefs/ModulesPage.js:716
+msgid "Luma Dock settings (JSON)"
+msgstr ""
+
+#: src/prefs/ModulesPage.js:721
+#, fuzzy
+msgid "Import Luma Dock Settings"
+msgstr "डॉक कॉन्फ़िगरेशन आयात करें"
+
+#: src/prefs/ModulesPage.js:764
+#, fuzzy
+msgid "Reset Every Setting?"
+msgstr "सभी सेटिंग्स रीसेट करें?"
+
+#: src/prefs/ModulesPage.js:765
+msgid "Luma Dock goes back to how it looked on day one. This cannot be undone."
+msgstr ""
+
+#: src/prefs/PanelPage.js:59
+#, fuzzy
+msgid "System Default"
+msgstr "सिस्टम फ़ोल्डर (डिफ़ॉल्ट)"
+
+#. Translators: date pattern labels. D/DD = day, M/MM = month number, YY/YYYY = year,
+#. Mon = abbreviated month name, Month = full month name, Day = abbreviated weekday,
+#. Weekday = full weekday name. Each label must stay distinct from the others.
+#: src/prefs/PanelPage.js:63
+msgid "DD/MM/YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:64
+msgid "MM/DD/YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:65
+msgid "YYYY/MM/DD"
+msgstr ""
+
+#: src/prefs/PanelPage.js:66
+msgid "YYYY/DD/MM"
+msgstr ""
+
+#: src/prefs/PanelPage.js:67
+msgid "YYYY-MM-DD (ISO 8601)"
+msgstr ""
+
+#: src/prefs/PanelPage.js:68
+msgid "DD-MM-YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:69
+msgid "MM-DD-YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:70
+msgid "DD.MM.YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:71
+msgid "YYYY.MM.DD"
+msgstr ""
+
+#: src/prefs/PanelPage.js:72
+msgid "D/M/YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:73
+msgid "M/D/YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:74
+msgid "DD/MM/YY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:75
+msgid "MM/DD/YY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:76
+msgid "YY/MM/DD"
+msgstr ""
+
+#: src/prefs/PanelPage.js:77
+msgid "DD.MM.YY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:80
+msgid "DD Mon YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:81
+msgid "Mon DD, YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:82
+msgid "DD Month YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:83
+msgid "Month DD, YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:84
+msgid "Day DD Mon"
+msgstr ""
+
+#: src/prefs/PanelPage.js:85
+msgid "Day, Mon DD"
+msgstr ""
+
+#: src/prefs/PanelPage.js:86
+msgid "Day DD/MM"
+msgstr ""
+
+#: src/prefs/PanelPage.js:87
+msgid "Weekday, DD Month YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:88
+msgid "Weekday, Month DD, YYYY"
+msgstr ""
+
+#: src/prefs/PanelPage.js:320
+msgid "Date Format"
+msgstr ""
+
+#: src/prefs/PanelPage.js:321
+msgid "How the date under the clock is written"
+msgstr ""
+
+#: src/prefs/PanelPage.js:347
+msgid "Search Engine"
+msgstr ""
+
+#: src/prefs/PanelPage.js:348
+msgid "Provider used for web searches in the Start Menu"
+msgstr ""
+
+#: src/prefs/PanelPage.js:353
+#, javascript-format
+msgid "Custom Search Address (%s is the search text)"
+msgstr ""
+
+#: src/prefs/PanelPage.js:418
+#, fuzzy
+msgid "Panel"
+msgstr "पैनल शैली"
+
+#: src/prefs/PanelPage.js:426
+#, fuzzy
+msgid "Panel Mode"
+msgstr "पैनल शैली"
+
+#: src/prefs/PanelPage.js:427
+msgid ""
+"Moves the GNOME top bar into the dock: workspaces, tray, Quick Settings and "
+"the clock in one bar"
+msgstr ""
+
+#: src/prefs/PanelPage.js:433
+#, fuzzy
+msgid "Panel Layout"
+msgstr "लेआउट"
+
+#: src/prefs/PanelPage.js:434
+#, fuzzy
+msgid "Workspace Indicator"
+msgstr "इंडिकेटर दिखाएँ"
+
+#: src/prefs/PanelPage.js:435
+msgid "Show the workspace pills at the start of the panel"
+msgstr ""
+
+#: src/prefs/PanelPage.js:437
+msgid "Where app icons and the start menu button sit"
+msgstr ""
+
+#: src/prefs/PanelPage.js:443
+msgid "Dynamic Panel (Dock + Panel)"
+msgstr ""
+
+#: src/prefs/PanelPage.js:444
+msgid ""
+"Shrink the panel to fit its contents like a floating dock while keeping all "
+"panel applets and controls"
+msgstr ""
+
+#: src/prefs/PanelPage.js:447
+#, fuzzy
+msgid "Dynamic Panel"
+msgstr "डायनामिक"
+
+#: src/prefs/PanelPage.js:448
+msgid ""
+"Use dock-style compact background, rounded corners, and borders for the panel"
+msgstr ""
+
+#: src/prefs/PanelPage.js:454
+#, fuzzy
+msgid "Panel Length"
+msgstr "पैनल शैली"
+
+#: src/prefs/PanelPage.js:455
+msgid ""
+"0% automatically hugs contents; higher values set a custom minimum length"
+msgstr ""
+
+#: src/prefs/PanelPage.js:473
+msgid "Auto"
+msgstr ""
+
+#: src/prefs/PanelPage.js:479
+msgid "Placement of the dynamic panel along the screen edge"
+msgstr ""
+
+#: src/prefs/PanelPage.js:496
+#, fuzzy
+msgid "Start Menu"
+msgstr "आरंभ"
+
+#: src/prefs/PanelPage.js:496
+msgid ""
+"Opens from the App Grid button in Panel mode and always in Independent mode"
+msgstr ""
+
+#: src/prefs/PanelPage.js:497
+msgid "Luma Dock Start Menu"
+msgstr ""
+
+#: src/prefs/PanelPage.js:498
+msgid ""
+"Pinned apps, recent apps and files, search, Lock and Power. Turn off to open "
+"GNOME’s app grid instead"
+msgstr ""
+
+#: src/prefs/PanelPage.js:502
+msgid "Recent Apps"
+msgstr ""
+
+#: src/prefs/PanelPage.js:503
+msgid "Show the apps you use most under Pinned"
+msgstr ""
+
+#: src/prefs/PanelPage.js:504
+msgid "Continue Where You Left Off"
+msgstr ""
+
+#: src/prefs/PanelPage.js:505
+msgid "Show the files you opened recently"
+msgstr ""
+
+#: src/prefs/PanelPage.js:506
+msgid "Recent Files"
+msgstr ""
+
+#: src/prefs/PanelPage.js:507
+msgid "How many files Continue where you left off shows"
+msgstr ""
+
+#: src/prefs/PanelPage.js:508
+#, fuzzy
+msgid "Search Providers"
+msgstr "इमोजी खोजें..."
+
+#: src/prefs/PanelPage.js:509
+msgid "Results from apps like Characters, Calendar and Calculator"
+msgstr ""
+
+#: src/prefs/PanelPage.js:510
+msgid "Web Search"
+msgstr ""
+
+#: src/prefs/PanelPage.js:511
+msgid "Offer to search the web for what you type"
+msgstr ""
+
+#: src/prefs/PanelPage.js:522
+msgid "These are GNOME’s own clock settings, so the lock screen follows too"
+msgstr ""
+
+#: src/prefs/PanelPage.js:523
+msgid "Date"
+msgstr ""
+
+#: src/prefs/PanelPage.js:523
+msgid "Second line under the time"
+msgstr ""
+
+#: src/prefs/PanelPage.js:526
+msgid "Seconds"
+msgstr ""
+
+#: src/prefs/PanelPage.js:531
+msgid ""
+"Small icons from other extensions live behind the arrow. Wide ones like CPU "
+"or network speed stay on the bar"
+msgstr ""
+
+#: src/prefs/PanelPage.js:533
+msgid "Tidy Up Tray"
+msgstr ""
+
+#: src/prefs/PanelPage.js:534
+msgid "Undo every move and reorder made from the tray"
+msgstr ""
+
+#: src/prefs/PanelPage.js:549
+msgid "Pin an icon to the bar"
+msgstr ""
+
+#: src/prefs/PanelPage.js:550
+msgid ""
+"Open the tray from the arrow to pin, reorder, or move wide applets into it"
+msgstr ""
+
+#. Translators: preferences tab title. Keep it short: every tab is as wide as the longest title.
+#: src/prefs/PresetsPage.js:56
+#, fuzzy
+msgctxt "preferences tab"
+msgid "Presets"
+msgstr "प्रीसेट"
+
+#: src/prefs/PresetsPage.js:61
+msgid ""
+"Choose a style to see it here, then apply it. You can still change any "
+"setting afterwards"
+msgstr ""
+
+#: src/prefs/PresetsPage.js:65 src/prefs/PresetsPage.js:99
+msgid "Apply"
+msgstr "लागू करें"
+
+#: src/prefs/PresetsPage.js:80
+msgid "Styles"
+msgstr ""
+
+#: src/prefs/PresetsPage.js:99
+#, fuzzy
+msgid "Reset to Preset"
+msgstr "डिफ़ॉल्ट पर रीसेट करें"
+
+#: src/prefs/PresetsPage.js:101
+msgid "Not applied yet"
+msgstr ""
+
+#: src/prefs/PresetsPage.js:102
+#, javascript-format
+msgid "Current style: %s, with your own changes"
+msgstr ""
+
+#: src/prefs/PresetsPage.js:103
+#, javascript-format
+msgid "Current style: %s"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:37
+msgid "Smart"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:37
+msgid "Hides when the active window touches the dock"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:38
+#, fuzzy
+msgid "Dodge Windows"
+msgstr "सभी खिड़कियों से बचें"
+
+#: src/prefs/BehaviorPage.js:38
+msgid "Hides when any window touches the dock"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:39
+#, fuzzy
+msgid "Maximized"
+msgstr "मैक्सिमाइज़्ड खिड़कियों से बचें"
+
+#: src/prefs/BehaviorPage.js:39
+msgid "Hides when a window is maximized"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:40
+#, fuzzy
+msgid "Always"
+msgstr "हमेशा छिपाएँ"
+
+#: src/prefs/BehaviorPage.js:40
+msgid "Stays hidden until you reach the screen edge"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:41
+#, fuzzy
+msgid "Never"
+msgstr "कभी न छिपाएँ"
+
+#: src/prefs/BehaviorPage.js:41
+msgid "The dock is always visible"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:45
+msgid "Show"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:45
+msgid "Reveals at the screen edge like on the desktop"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:46
+msgid "Delayed"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:46
+msgid "Needs a longer push at the screen edge"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:47 src/prefs/MusicPillPage.js:72
+msgid "Hidden"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:47
+msgid "Stays hidden until the app leaves fullscreen"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:52
+msgid "Bounce"
+msgstr "बाउंस"
+
+#: src/prefs/BehaviorPage.js:53
+msgid "Jump"
+msgstr "जंप"
+
+#: src/prefs/BehaviorPage.js:54
+msgid "Heartbeat"
+msgstr "हार्टबीट"
+
+#: src/prefs/BehaviorPage.js:55
+msgid "Spin"
+msgstr "स्पिन"
+
+#: src/prefs/BehaviorPage.js:56
+msgid "Flip"
+msgstr "फ़्लिप"
+
+#: src/prefs/BehaviorPage.js:57
+msgid "Squeeze"
+msgstr "स्क्वीज़"
+
+#: src/prefs/BehaviorPage.js:59
+msgid "Shake"
+msgstr "शेक"
+
+#: src/prefs/BehaviorPage.js:60 src/prefs/BehaviorPage.js:195
+msgid "Jelly"
+msgstr "जेली"
+
+#: src/prefs/BehaviorPage.js:61
+msgid "Tada"
+msgstr "टाडा"
+
+#: src/prefs/BehaviorPage.js:62
+msgid "Swing"
+msgstr "स्विंग"
+
+#: src/prefs/BehaviorPage.js:63
+msgid "Dim"
+msgstr "डिम"
+
+#: src/prefs/BehaviorPage.js:64
+msgid "Move Up"
+msgstr "ऊपर जाएँ"
+
+#: src/prefs/BehaviorPage.js:65
+msgid "Move Down"
+msgstr "नीचे जाएँ"
+
+#: src/prefs/BehaviorPage.js:66
+msgid "Move Left"
+msgstr "बाएँ जाएँ"
+
+#: src/prefs/BehaviorPage.js:67
+msgid "Move Right"
+msgstr "दाएँ जाएँ"
+
+#: src/prefs/BehaviorPage.js:68
+msgid "Enlarge"
+msgstr "बड़ा करें"
+
+#: src/prefs/BehaviorPage.js:69
+msgid "Shrink"
+msgstr "छोटा करें"
+
+#: src/prefs/BehaviorPage.js:70
+msgid "Roll (Wheel)"
+msgstr "रोल (पहिया)"
+
+#: src/prefs/BehaviorPage.js:71
+msgid "Squish (Drop)"
+msgstr "स्क्विश (बूंद)"
+
+#: src/prefs/BehaviorPage.js:72
+msgid "Zoom Fade (Ghost)"
+msgstr "ज़ूम फेड (भूत)"
+
+#: src/prefs/BehaviorPage.js:73
+msgid "3D Spin (Coin)"
+msgstr "3D स्पिन (सिक्का)"
+
+#: src/prefs/BehaviorPage.js:84
+msgid "Window Classes to Hide"
+msgstr ""
+
+#. Translators: preferences tab title. Keep it short: every tab is as wide as the longest title.
+#: src/prefs/BehaviorPage.js:107
+#, fuzzy
+msgctxt "preferences tab"
+msgid "Behavior"
+msgstr "व्यवहार"
+
+#: src/prefs/BehaviorPage.js:122
+msgid "Auto-Hide"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:122
+msgid "When the dock steps out of the way"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:123
+#, fuzzy
+msgid "Hide"
+msgstr "छिपाने का मोड"
+
+#: src/prefs/BehaviorPage.js:128
+msgid "Stays Visible"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:129
+msgid "Part of the dock left on screen when it hides"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:132
+#, fuzzy
+msgid "In Fullscreen"
+msgstr "पूर्ण स्क्रीन चौड़ाई"
+
+#: src/prefs/BehaviorPage.js:136
+#, fuzzy
+msgid "Fullscreen Edge Push"
+msgstr "पूर्ण स्क्रीन चौड़ाई"
+
+#: src/prefs/BehaviorPage.js:137
+msgid "Never shorter than the normal edge push"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:142
+msgid "Games and Hidden Pointers"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:143
+msgid ""
+"Apps that hide the pointer, like most games and video players, don’t bring "
+"up the dock. For games with their own pointer, choose Hidden under In "
+"Fullscreen"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:148
+msgid "Auto-Hide Timing"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:150
+#, fuzzy
+msgid "Hide After"
+msgstr "छिपाने का मोड"
+
+#: src/prefs/BehaviorPage.js:151
+msgid "Show After"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:152
+msgid "Edge Push"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:152
+msgid "How long to rest the pointer at the edge"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:154
+#, fuzzy
+msgid "Slide Duration"
+msgstr "साइड पैडिंग"
+
+#: src/prefs/BehaviorPage.js:158
+#, fuzzy
+msgid "Animations"
+msgstr "अनुप्रयोग"
+
+#: src/prefs/BehaviorPage.js:159
+msgid "On Click"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:159
+msgid "How an icon reacts when clicked"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:160
+msgid "Minimize"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:160
+#, fuzzy
+msgid "How windows fly into the dock"
+msgstr "डॉक के लिए डिस्प्ले चुनें"
+
+#: src/prefs/BehaviorPage.js:161
+msgid "Magic Lamp"
+msgstr "जादुई चिराग (मैजिक लैंप)"
+
+#: src/prefs/BehaviorPage.js:162
+msgid "Snake"
+msgstr "साँप (स्नेक)"
+
+#: src/prefs/BehaviorPage.js:163
+msgid "Vortex (Black Hole)"
+msgstr "भँवर (ब्लैक होल)"
+
+#: src/prefs/BehaviorPage.js:164
+msgid "Origami (3D Fold)"
+msgstr "ओरिगेमी (3D मोड़)"
+
+#: src/prefs/BehaviorPage.js:165
+msgid "Jelly (Squash & Stretch)"
+msgstr "जेली (दबाव और खिंचाव)"
+
+#. Translators: the stock GNOME Shell minimize animation, not one of the dock's effects.
+#: src/prefs/BehaviorPage.js:167
+msgid "GNOME Default"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:170
+#, fuzzy
+msgid "Minimize Duration"
+msgstr "विंडो एनिमेशन अवधि"
+
+#: src/prefs/BehaviorPage.js:174
+msgid "Minimize into Thumbnails"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:175
+msgid ""
+"Minimized windows get their own live preview in the dock, next to the Trash"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:181
+#, fuzzy
+msgid "Hover Animation"
+msgstr "पीक एनिमेशन गति"
+
+#: src/prefs/BehaviorPage.js:182
+msgid "Animate the icon background under the pointer"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:185
+msgid "Hover Zoom"
+msgstr "होवर ज़ूम"
+
+#: src/prefs/BehaviorPage.js:185
+msgid "Icons grow as the pointer passes over them"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:186
+#, fuzzy
+msgid "Magnify on Hover"
+msgstr "कर्सर ले जाने पर आवर्धन प्रभाव"
+
+#: src/prefs/BehaviorPage.js:190
+#, fuzzy
+msgid "Motion"
+msgstr "स्थिति:"
+
+#: src/prefs/BehaviorPage.js:190
+#, fuzzy
+msgid "The shape of the wave"
+msgstr "इंडिकेटर का आकार"
+
+#: src/prefs/BehaviorPage.js:191
+msgid "Fluid"
+msgstr "तरल (Fluid)"
+
+#: src/prefs/BehaviorPage.js:192
+msgid "Domino"
+msgstr "डोमिनोज़"
+
+#: src/prefs/BehaviorPage.js:193
+msgid "Cylinder"
+msgstr "सिलेंडर"
+
+#: src/prefs/BehaviorPage.js:194
+msgid "Magnetic"
+msgstr "चुंबकीय"
+
+#: src/prefs/BehaviorPage.js:196
+msgid "Coverflow"
+msgstr "कवरफ़्लो"
+
+#: src/prefs/BehaviorPage.js:198
+msgid "Zoom"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:198
+msgid "Largest size an icon reaches"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:200
+#, fuzzy
+msgid "Smoothness"
+msgstr "एनिमेशन सहजता"
+
+#: src/prefs/BehaviorPage.js:200
+msgid "How softly icons follow the pointer"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:202
+msgid "Spread"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:202
+#, fuzzy
+msgid "How many neighbours react"
+msgstr "पड़ोसी आइकन कितनी दूरी तक प्रतिक्रिया करते हैं"
+
+#: src/prefs/BehaviorPage.js:204
+msgid "Lift"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:204
+msgid "How far icons rise towards the pointer"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:206
+msgid "Make Room"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:206
+msgid "Neighbours slide apart for the zoomed icon"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:210
+msgid "Push Strength"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:215
+msgid "Motion Details"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:218
+msgid "Tilt"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:219
+msgid "Curve"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:220
+msgid "Pull"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:220
+msgid "How strongly icons snap to the pointer"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:222
+msgid "Stretch"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:223
+#, fuzzy
+msgid "Squash"
+msgstr "वर्ग (Square)"
+
+#: src/prefs/BehaviorPage.js:224
+#, fuzzy
+msgid "Card Angle"
+msgstr "सिलेंडर कोण"
+
+#: src/prefs/BehaviorPage.js:230
+#, fuzzy
+msgid "Window Previews"
+msgstr "ऐप पूर्वावलोकन दिखाएँ"
+
+#: src/prefs/BehaviorPage.js:231
+msgid "Preview on Hover"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:231
+msgid "Window thumbnails above the icon"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:232
+msgid "Pick Window on Click"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:233
+msgid ""
+"Clicking an app with several windows shows their previews to choose from"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:234
+msgid "Thumbnail Width"
+msgstr "थंबनेल चौड़ाई"
+
+#: src/prefs/BehaviorPage.js:235
+msgid "Large Preview"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:235
+#, fuzzy
+msgid "Share of the screen for the big preview"
+msgstr "केंद्र पूर्वावलोकन के लिए स्क्रीन प्रतिशत"
+
+#: src/prefs/BehaviorPage.js:237
+msgid "Peek"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:237
+#, fuzzy
+msgid "Fade other windows while hovering a thumbnail"
+msgstr "थंबनेल पर होवर करते समय अन्य खिड़कियों को पारदर्शी बनाएँ"
+
+#: src/prefs/BehaviorPage.js:238
+msgid "Peek Fade"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:242
+msgid "Mouse &amp; Keyboard"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:243 src/ui/context-menu/AppContextMenu.js:331
+#: src/ui/startmenu/SearchView.js:263 src/ui/startmenu/StartMenu.js:313
+msgid "New Window"
+msgstr "नई विंडो"
+
+#: src/prefs/BehaviorPage.js:243
+msgid "Open another window of an app"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:244
+#, fuzzy
+msgid "Ctrl + Click"
+msgstr "Ctrl + बायाँ क्लिक"
+
+#: src/prefs/BehaviorPage.js:245 src/prefs/MusicPillPage.js:83
+#, fuzzy
+msgid "Middle Click"
+msgstr "माउस का मध्य क्लिक"
+
+#: src/prefs/BehaviorPage.js:246
+msgid "Both"
+msgstr "दोनों"
+
+#: src/prefs/BehaviorPage.js:248
+msgid "Right-Click Context Menu"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:249
+msgid ""
+"Show the context menu when right-clicking dock icons. The App Grid button "
+"always keeps its menu"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:250
+msgid "Scroll on Dock"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:250
+#, fuzzy
+msgid "Switch workspaces"
+msgstr "वर्कस्पेस अलग रखें"
+
+#: src/prefs/BehaviorPage.js:251
+#, fuzzy
+msgid "Scroll on Icon"
+msgstr "ऐप स्क्रॉल क्रिया"
+
+#: src/prefs/BehaviorPage.js:251
+msgid "Cycle through that app’s windows"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:252
+#, fuzzy
+msgid "Quick Launch"
+msgstr "क्विक लॉन्च"
+
+#: src/prefs/BehaviorPage.js:253
+#, fuzzy
+msgid ""
+"Super + 1–9 opens the first nine dock apps. Turn off to use these keys for "
+"GNOME shortcuts"
+msgstr ""
+"Super + 1–9 पहले नौ डॉक ऐप्स को खोलता है (कीबोर्ड शॉर्टकट के रूप में पंजीकृत)। सेटिंग्स → "
+"कीबोर्ड में बदलें।"
+
+#: src/prefs/BehaviorPage.js:255
+msgid "Apps on the Dock"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:256
+#, fuzzy
+msgid "Also show open apps that are not pinned"
+msgstr "डॉक में पिन न किए गए चल रहे ऐप्स दिखाएँ"
+
+#: src/prefs/BehaviorPage.js:257
+msgid "This Workspace Only"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:257
+#, fuzzy
+msgid "Show only apps open on the current workspace"
+msgstr "केवल वर्तमान वर्कस्पेस पर चल रहे ऐप्स दिखाएँ"
+
+#: src/prefs/BehaviorPage.js:258
+msgid "Lock Order"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:258
+msgid "Stop icons from being dragged around"
+msgstr ""
+
+#: src/prefs/BehaviorPage.js:260
+#, fuzzy
+msgid "Hidden Windows"
+msgstr "सभी खिड़कियों से बचें"
+
+#: src/prefs/BehaviorPage.js:261
+msgid ""
+"Some apps show on-screen notices (like a Caps Lock indicator) as regular "
+"windows, which makes an extra icon pop up on the dock. Windows whose class "
+"matches one of these patterns are left out of the dock. Separate patterns "
+"with commas; * matches any text."
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:34 src/prefs/MusicPillPage.js:89
+msgid "Nothing"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:35
+msgid "Play or Pause"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:36
+msgid "Next Track"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:37
+msgid "Previous Track"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:38
+msgid "Open Big Player"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:39
+msgid "Show or Hide Player"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:45 src/prefs/MusicPillPage.js:49
+msgid "Music Pill"
+msgstr "म्यूजिक पिल"
+
+#: src/prefs/MusicPillPage.js:50
+msgid ""
+"Now playing on the dock: artwork, controls and live lyrics. Works with "
+"Spotify, browsers and other music players"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:55
+#, fuzzy
+msgid "Placement"
+msgstr "पिल की स्थिति"
+
+#: src/prefs/MusicPillPage.js:57
+msgid "Before Apps"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:57
+#, fuzzy
+msgid "At the start of the dock"
+msgstr "डॉक के लिए डिस्प्ले चुनें"
+
+#: src/prefs/MusicPillPage.js:58
+msgid "After Apps"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:58
+#, fuzzy
+msgid "At the end of the dock"
+msgstr "डॉक के लिए डिस्प्ले चुनें"
+
+#: src/prefs/MusicPillPage.js:60
+#, fuzzy
+msgid "Separator"
+msgstr "विभाजक (Separators)"
+
+#. Translators: "Before Modules" and "Appearance" must match the names used for that separator and page.
+#: src/prefs/MusicPillPage.js:62
+msgid ""
+"Divider between the pill and the apps while music is playing. Looks like the "
+"“Before Modules” separator in Appearance"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:68
+msgid "Look"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:69
+msgid "Track Progress"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:69
+msgid "Where the progress line is drawn"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:70
+msgid "Around the Pill"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:71
+msgid "Around the Artwork"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:74
+msgid "Previous Button"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:74 src/prefs/MusicPillPage.js:75
+msgid "Appears when hovering the pill"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:75
+#, fuzzy
+msgid "Next Button"
+msgstr "डेस्कटॉप दिखाएँ बटन"
+
+#: src/prefs/MusicPillPage.js:76
+msgid "Live Lyrics"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:76
+msgid ""
+"Show the song’s lyrics on the pill as it plays. Lyrics come from lrclib.net"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:78
+msgid "Mouse"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:78
+msgid "What the pill does when you click or scroll on it"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:80
+msgid "Click"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:81
+msgid ""
+"Waits a moment to tell it apart from a double click, unless Double Click "
+"does nothing"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:82
+#, fuzzy
+msgid "Double Click"
+msgstr "माउस का मध्य क्लिक"
+
+#: src/prefs/MusicPillPage.js:84
+#, fuzzy
+msgid "Right Click"
+msgstr "दायाँ"
+
+#: src/prefs/MusicPillPage.js:85
+msgid "Scroll"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:86
+msgid "Change Volume"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:87
+msgid "Seek 5 Seconds"
+msgstr ""
+
+#: src/prefs/MusicPillPage.js:88
+msgid "Next or Previous Track"
+msgstr ""
+
+#: src/ui/context-menu/AppContextMenu.js:52
+msgid "Stack"
+msgstr "स्टैक"
+
+#: src/ui/context-menu/AppContextMenu.js:186
+msgid "Unpack Stack"
+msgstr "स्टैक खोलें"
+
+#: src/ui/context-menu/AppContextMenu.js:194
+msgid "Close All Apps"
+msgstr "सभी ऐप्स बंद करें"
+
+#: src/ui/context-menu/AppContextMenu.js:203
+#, javascript-format
+msgid "Delete %s"
+msgstr "%s हटाएँ"
+
+#: src/ui/context-menu/AppContextMenu.js:257
+#, javascript-format
+msgid "Add to %s"
+msgstr "%s में जोड़ें"
+
+#: src/ui/context-menu/AppContextMenu.js:313
+#, javascript-format
+msgid "Open %s"
+msgstr "%s खोलें"
+
+#: src/ui/context-menu/AppContextMenu.js:353
+#, fuzzy
+msgid "Unpin from Luma Dock"
+msgstr "ध्रुव से अनपिन करें"
+
+#: src/ui/context-menu/AppContextMenu.js:353
+#, fuzzy
+msgid "Pin to Luma Dock"
+msgstr "ध्रुव में पिन करें"
+
+#: src/ui/context-menu/AppContextMenu.js:367
+#, javascript-format
+msgid "Remove from %s"
+msgstr "%s से हटाएँ"
+
+#: src/ui/context-menu/AppContextMenu.js:403
+msgid "Close All Windows"
+msgstr "सभी खिड़कियाँ बंद करें"
+
+#: src/ui/context-menu/AppContextMenu.js:403
+msgid "Close Folder"
+msgstr "फ़ोल्डर बंद करें"
+
+#: src/ui/context-menu/AppContextMenu.js:403
+msgid "Quit"
+msgstr "बंद करें"
+
+#: src/ui/context-menu/AppContextMenu.js:417
+#, fuzzy
+msgid "Luma Dock Settings"
+msgstr "ध्रुव सेटिंग्स"
+
+#: src/ui/context-menu/TrashActionsHandler.js:73
+msgid "Empty Trash?"
+msgstr "ट्रैश खाली करें?"
+
+#: src/ui/context-menu/TrashActionsHandler.js:78
+msgid ""
+"Are you sure you want to permanently delete all items from the Trash?\n"
+"This action cannot be undone."
+msgstr ""
+"क्या आप वाकई ट्रैश से सभी वस्तुओं को स्थायी रूप से हटाना चाहते हैं?\n"
+"यह क्रिया पूर्ववत नहीं की जा सकती।"
+
+#: src/ui/context-menu/TrashActionsHandler.js:87
+#: src/ui/context-menu/TrashActionsHandler.js:115
+msgid "Empty Trash"
+msgstr "ट्रैश खाली करें"
+
+#: src/ui/context-menu/TrashActionsHandler.js:98
+msgid "Checking Trash..."
+msgstr "ट्रैश की जाँच हो रही है..."
+
+#: src/ui/context-menu/TrashActionsHandler.js:125
+msgid "Trash is Empty"
+msgstr "ट्रैश खाली है"
+
+#: src/ui/context-menu/WindowThumbnailBuilder.js:59
+#: src/ui/dock/MinimizedWindowButton.js:132
+#: src/ui/magnifier/MagnifierTooltipRenderer.js:285
+msgid "Window"
+msgstr "विंडो"
+
+#: src/ui/folder-menu/EmojiPicker.js:52 src/ui/startmenu/HomeView.js:360
+msgid "Recently used"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:53
+msgid "Smileys & Emotion"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:54
+msgid "People & Body"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:55
+#, fuzzy
+msgid "Animals & Nature"
+msgstr "मिनिमल स्लेट"
+
+#: src/ui/folder-menu/EmojiPicker.js:56
+msgid "Food & Drink"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:57
+msgid "Travel & Places"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:58
+msgid "Activities"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:59
+msgid "Objects"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:60
+msgid "Symbols"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:61
+msgid "Flags"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:227 src/ui/folder-menu/EmojiPicker.js:376
+msgid "No emojis found"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:246
+#, fuzzy
+msgid "Search emoji"
+msgstr "इमोजी खोजें..."
+
+#: src/ui/folder-menu/EmojiPicker.js:351
+msgid "Pick an emoji to use it often"
+msgstr ""
+
+#: src/ui/folder-menu/EmojiPicker.js:376
+#, fuzzy
+msgid "Search results"
+msgstr "इमोजी खोजें..."
+
+#: src/ui/folder-menu/FolderMenuBuilder.js:181
+#, fuzzy
+msgid "Rename folder"
+msgstr "फ़ोल्डर हटाएँ"
+
+#: src/ui/folder-menu/FolderMenuBuilder.js:183
+#, fuzzy
+msgid "Background color"
+msgstr "पृष्ठभूमि का रंग और बॉर्डर"
+
+#: src/ui/folder-menu/FolderMenuBuilder.js:185
+msgid "Letter style"
+msgstr ""
+
+#: src/ui/folder-menu/FolderMenuBuilder.js:187
+#, fuzzy
+msgid "Custom image"
+msgstr "कस्टम छवि फ़ाइल"
+
+#: src/ui/folder-menu/FolderMenuBuilder.js:194
+msgid "Emoji icon"
+msgstr ""
+
+#: src/ui/folder-menu/FolderMenuBuilder.js:196
+msgid "Reset style"
+msgstr ""
+
+#: src/ui/folder-menu/FolderMenuBuilder.js:273
+#, fuzzy
+msgid "Folder name"
+msgstr "फ़ोल्डर पथ"
+
+#: src/ui/folder-menu/FolderMenuBuilder.js:283
+msgid "Save"
+msgstr ""
+
+#: src/ui/folder-menu/FolderMenuBuilder.js:494
+msgid "zenity is required for file selection dialogs."
+msgstr "फ़ाइल चयन संवाद के लिए zenity आवश्यक है।"
+
+#: src/ui/folder-menu/FolderMenuBuilder.js:498
+#, fuzzy
+msgid "Select Custom Folder Icon"
+msgstr "कस्टम फ़ोल्डर आइकन छवि चुनें"
+
+#: src/ui/magnifier/MagnifierFrameEngine.js:881
+#: src/ui/modules/AppGridModule.js:279
+msgid "Applications"
+msgstr "अनुप्रयोग"
+
+#: src/ui/modules/music/MusicPillPopup.js:217
+msgid "Lyrics"
+msgstr ""
+
+#: src/ui/modules/music/MusicPillPopup.js:220
+msgid "Shuffle"
+msgstr ""
+
+#: src/ui/modules/music/MusicPillPopup.js:221
+msgid "Repeat"
+msgstr ""
+
+#: src/ui/modules/music/MusicPillPopup.js:236
+msgid "Track Title"
+msgstr ""
+
+#: src/ui/modules/music/MusicPillPopup.js:250
+#, fuzzy
+msgid "Artist"
+msgstr "अज्ञात कलाकार"
+
+#: src/ui/modules/music/MusicPillPopup.js:463
+msgid "Show lyrics earlier"
+msgstr ""
+
+#: src/ui/modules/music/MusicPillPopup.js:465
+#, fuzzy
+msgid "Show lyrics later"
+msgstr "इंडिकेटर दिखाएँ"
+
+#: src/ui/modules/ClockModule.js:104
+msgid "Date & Time"
+msgstr "दिनांक एवं समय"
+
+#: src/ui/startmenu/AllAppsView.js:65 src/ui/startmenu/HomeView.js:127
+#, fuzzy
+msgid "All apps"
+msgstr "सभी ऐप्स बंद करें"
+
+#: src/ui/startmenu/AllAppsView.js:66
+msgid "Switch between list and grid"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:127
+msgid "Pinned"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:177
+#, javascript-format
+msgid "Page %d"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:314 src/ui/startmenu/SearchView.js:261
+#: src/ui/startmenu/StartMenu.js:312 src/ui/startmenu/StartMenu.js:357
+#, fuzzy
+msgid "Open"
+msgstr "%s खोलें"
+
+#: src/ui/startmenu/HomeView.js:315 src/ui/startmenu/SearchView.js:266
+#: src/ui/startmenu/StartMenu.js:316
+#, fuzzy
+msgid "Unpin from Start"
+msgstr "ध्रुव से अनपिन करें"
+
+#: src/ui/startmenu/HomeView.js:343
+msgid "Recent apps"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:360
+#, fuzzy, javascript-format
+msgid "%d window"
+msgid_plural "%d windows"
+msgstr[0] "विंडो"
+msgstr[1] "विंडो"
+
+#: src/ui/startmenu/HomeView.js:395
+msgid "Continue where you left off"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:402
+#, fuzzy
+msgid "Folder"
+msgstr "नया फ़ोल्डर"
+
+#: src/ui/startmenu/HomeView.js:442 src/ui/startmenu/SearchView.js:186
+#: src/ui/startmenu/SearchView.js:187
+#, fuzzy
+msgid "Settings"
+msgstr "सेटिंग्स रीसेट करें"
+
+#: src/ui/startmenu/HomeView.js:443
+msgid "Lock"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:444
+msgid "Power Off / Log Out"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:454
+msgid "Switch User"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:455
+msgid "Suspend"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:456
+msgid "Hibernate"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:457
+#, fuzzy
+msgid "Restart"
+msgstr "आरंभ"
+
+#: src/ui/startmenu/HomeView.js:458
+msgid "Power Off"
+msgstr ""
+
+#: src/ui/startmenu/HomeView.js:459
+msgid "Log Out"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:146
+msgid "Type a command to run"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:150
+msgid "Command"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:153
+msgid "Run in Terminal · Enter"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:160
+msgid "Run in Background · Ctrl+Enter"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:160
+msgid "Run in Background · Enter"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:177
+msgid "Apps"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:178
+#, fuzzy
+msgid "App"
+msgstr "लागू करें"
+
+#: src/ui/startmenu/SearchView.js:181
+#, fuzzy
+msgid "Files"
+msgstr "JSON फ़ाइलें"
+
+#: src/ui/startmenu/SearchView.js:198
+#, javascript-format
+msgid "No results for “%s”"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:209
+#, javascript-format
+msgid "Search %s for “%s”"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:209
+#, javascript-format
+msgid "Search the web for “%s”"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:210
+#, fuzzy, javascript-format
+msgid "Opens in %s"
+msgstr "%s खोलें"
+
+#: src/ui/startmenu/SearchView.js:210
+msgid "Opens in your browser"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:213
+msgid "Web"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:241
+msgid "Calculator"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:248
+msgid "Open in Calculator"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:266 src/ui/startmenu/StartMenu.js:316
+#, fuzzy
+msgid "Pin to Start"
+msgstr "ध्रुव में पिन करें"
+
+#: src/ui/startmenu/SearchView.js:278
+msgid "Best match · App"
+msgstr ""
+
+#: src/ui/startmenu/SearchView.js:310
+#, javascript-format
+msgid "Show %d more"
+msgid_plural "Show %d more"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/ui/startmenu/StartMenu.js:350
+#, fuzzy
+msgid "Pin to Dock"
+msgstr "ध्रुव में पिन करें"
+
+#: src/ui/startmenu/StartMenu.js:350
+#, fuzzy
+msgid "Unpin from Dock"
+msgstr "ध्रुव से अनपिन करें"
+
+#: src/ui/startmenu/StartMenu.js:351
+msgid "Pin to Dynamic Panel"
+msgstr ""
+
+#: src/ui/startmenu/StartMenu.js:351
+#, fuzzy
+msgid "Unpin from Dynamic Panel"
+msgstr "ध्रुव से अनपिन करें"
+
+#: src/ui/startmenu/StartMenu.js:352
+#, fuzzy
+msgid "Pin to Panel"
+msgstr "ध्रुव में पिन करें"
+
+#: src/ui/startmenu/StartMenu.js:352
+#, fuzzy
+msgid "Unpin from Panel"
+msgstr "ध्रुव से अनपिन करें"
+
+#: src/ui/startmenu/StartMenu.js:358
+#, fuzzy
+msgid "Show in Files"
+msgstr "म्यूजिक पिल दिखाएँ"
+
+#: src/ui/startmenu/StartMenu.js:425
+msgid "Rename"
+msgstr ""
+
+#: src/ui/startmenu/StartMenu.js:471
+#, fuzzy
+msgid "Remove from Folder"
+msgstr "फ़ोल्डर हटाएँ"
+
+#: src/ui/startmenu/StartMenu.js:843
+msgid "Search apps, files and settings"
+msgstr ""
+
+#: src/ui/startmenu/StartMenu.js:875
+msgid "Back"
+msgstr ""
+
+#: src/ui/startmenu/StartMenuWidgets.js:453
+msgid "Just now"
+msgstr ""
+
+#: src/ui/startmenu/StartMenuWidgets.js:456
+#, javascript-format
+msgid "%d min ago"
+msgid_plural "%d min ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/ui/startmenu/StartMenuWidgets.js:460
+#, javascript-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/ui/startmenu/StartMenuWidgets.js:463
+msgid "Yesterday"
+msgstr ""
+
+#: src/ui/startmenu/StartMenuWidgets.js:463
+#, javascript-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] ""
+msgstr[1] ""

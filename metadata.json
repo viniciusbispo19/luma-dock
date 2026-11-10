@@ -1,0 +1,17 @@
+{
+  "name": "Luma Dock",
+  "url": "https://github.com/viniciusbispo19/luma-dock",
+  "description": "Uma dock leve e bonita para o GNOME, feita para deixar a área de trabalho do seu jeito.\n\n• Flutuante, de ponta a ponta ou como painel\n• Zoom nos ícones e prévias de janela\n• Pastas de apps e Music Pill com letras\n• Toda em português do Brasil\n\nAs letras das músicas vêm do lrclib.net.",
+  "uuid": "luma-dock@viniciusbispo19",
+  "gettext-domain": "luma-dock@viniciusbispo19",
+  "settings-schema": "org.gnome.shell.extensions.luma-dock",
+  "session-modes": [
+    "user",
+    "unlock-dialog"
+  ],
+  "shell-version": [
+    "50",
+    "51"
+  ],
+  "version-name": "0.1.0"
+}

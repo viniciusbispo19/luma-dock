@@ -1,0 +1,666 @@
+/* Context Menu */
+.context-menu-big-preview-container {
+    border-radius: 12px;
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 0.10);
+    background-color: transparent;
+}
+
+.context-menu-panel {
+    background-color: rgba(4, 5, 14, 0.80);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px;
+    border-radius: 18px;
+}
+
+.context-menu-header-box {
+    margin-bottom: 8px;
+}
+
+.context-menu-header-title {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: bold;
+    font-size: 10.5pt;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.context-menu-thumb-scroll {
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+.context-menu-thumb-box {
+    padding: 4px;
+}
+
+.context-menu-thumb-btn {
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    transition-duration: 150ms;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.context-menu-thumb-btn:hover,
+.context-menu-thumb-btn:focus {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.context-menu-thumb-title {
+    font-size: 9.75pt;
+    color: rgba(255, 255, 255, 0.92);
+    background-color: rgba(25, 25, 28, 0.95);
+    border-radius: 0 0 8px 8px;
+    padding: 6px;
+    text-align: center;
+}
+
+.context-menu-thumb-title-bin {
+    padding: 0;
+}
+
+.context-menu-controls-box {
+    padding-top: 2px;
+    padding-right: 2px;
+}
+
+.context-menu-win-control-btn {
+    border-radius: 999px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    transition-duration: 150ms;
+}
+
+.context-menu-win-control-btn:hover,
+.context-menu-win-control-btn:focus {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+}
+
+.context-menu-action-btn {
+    border-radius: 8px;
+    padding: 6px 12px;
+    transition-duration: 100ms;
+    background-color: transparent;
+}
+
+.context-menu-action-btn:hover,
+.context-menu-action-btn:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.context-menu-action-btn-destructive {
+    border-radius: 8px;
+    padding: 6px 12px;
+    transition-duration: 100ms;
+    background-color: transparent;
+}
+
+.context-menu-action-btn-destructive:hover,
+.context-menu-action-btn-destructive:focus {
+    background-color: rgba(192, 10, 0, 0.25);
+}
+
+.context-menu-action-label {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 10.5pt;
+    font-weight: normal;
+}
+
+.context-menu-action-label-destructive {
+    color: #ff483f;
+    font-size: 10.5pt;
+    font-weight: bold;
+}
+
+.context-menu-checkbox-box {
+    border-radius: 4px;
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.context-menu-checkbox-box.checked {
+    border-color: #0a84ff;
+    background-color: #0a84ff;
+}
+
+.context-menu-separator-line {
+    margin: 4px 0;
+    background-color: rgba(255, 255, 255, 0.06);
+    height: 1px;
+}
+
+/* Dock Elements */
+.dock-clock-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: bold;
+    margin: 0 8px;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.dock-module-btn-vertical {
+    padding: 0px 0px;
+    margin: 0px 0px;
+}
+
+.dock-module-btn-horizontal {
+    padding: 0px 0px;
+    margin: 0px 0px;
+}
+
+.dock-separator-vertical {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+    margin: 4px auto;
+}
+
+.dock-separator-horizontal {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+    margin: auto 4px;
+}
+
+.dock-full-separator-vertical {
+    background-color: rgba(255, 255, 255, 0.35);
+    margin: 6px 2px;
+}
+
+.dock-full-separator-horizontal {
+    background-color: rgba(255, 255, 255, 0.35);
+    margin: 2px 6px;
+}
+
+.app-running-dot {
+    background-color: white;
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+/* Dock Tooltip */
+.luma-tooltip {
+    background-color: rgba(20, 20, 22, 0.92);
+    color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 9.75pt;
+    font-weight: 500;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ==================== Luma Dock Music Pill ==================== */
+
+.luma-music-pill-container {
+    padding: 0px;
+    margin: 2px 4px;
+    height: 44px;
+}
+
+.luma-music-pill {
+    background-color: rgba(20, 20, 24, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 22px;
+    padding: 4px 8px;
+    height: 44px;
+}
+
+.luma-music-pill:hover {
+    background-color: rgba(28, 28, 34, 0.98);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* Album Art */
+.luma-music-art-bin {
+    border-radius: 999px;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Center Meta Area */
+.luma-music-meta-box {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 130px;
+    padding: 0;
+}
+
+/* Static Track Title over Lyrics */
+.luma-music-mini-title {
+    font-weight: 700;
+    font-size: 10.5px;
+    color: #ffffff;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.85), 0px 0px 1px rgba(0, 0, 0, 0.6);
+}
+
+/* Fallback Artist text */
+.luma-music-artist {
+    font-weight: 500;
+    font-size: 9.5px;
+    color: rgba(255, 255, 255, 0.72);
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.85);
+}
+
+.luma-music-title {
+    font-weight: 700;
+    font-size: 11px;
+    color: #ffffff;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.85), 0px 0px 1px rgba(0, 0, 0, 0.6);
+}
+
+.luma-music-btn {
+    border-radius: 999px;
+    padding: 4px;
+    margin: 0 1px;
+    color: #ffffff;
+}
+
+.luma-music-btn:hover {
+    background-color: rgba(255, 255, 255, 0.20);
+}
+
+.luma-music-btn-play {
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    transition-duration: 150ms;
+}
+
+.luma-music-btn-play:hover {
+    filter: brightness(1.15);
+}
+
+/* ==================== Hybrid Panel Integration ==================== */
+.luma-hybrid-panel-box {
+    spacing: 0px;
+    padding: 0 4px;
+    font-size: 13px;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#LumaHybridRightPanel {
+    spacing: 8px;
+    padding: 0;
+}
+
+#LumaStolenExtensionsBox {
+    spacing: 4px;
+}
+
+.luma-hybrid-panel-box .panel-button {
+    padding: 0 8px;
+    font-weight: 600;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.95);
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    transition-duration: 150ms;
+}
+
+.luma-hybrid-panel-box .panel-button:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.luma-hybrid-panel-box .panel-button:active,
+.luma-hybrid-panel-box .panel-button:checked {
+    background-color: rgba(255, 255, 255, 0.26);
+}
+
+/* Workspace Indicator Pills */
+.luma-workspace-indicator {
+    spacing: 4px;
+}
+
+.luma-workspace-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.45);
+    margin: 0 2px;
+    transition-duration: 150ms;
+}
+
+.luma-workspace-dot.active {
+    width: 20px;
+    height: 6px;
+    background-color: #ffffff;
+}
+
+.luma-workspace-dot.vertical {
+    margin: 2px 0;
+}
+
+.luma-workspace-dot.vertical.active {
+    width: 6px;
+    height: 20px;
+}
+
+/* Windows-style Date/Time Clock */
+.luma-date-menu-box {
+    margin: 0 4px;
+}
+
+.luma-date-menu-label {
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.15;
+    color: #ffffff;
+    font-feature-settings: "tnum";
+}
+
+.luma-date-menu-label.solo {
+    font-weight: 600;
+}
+
+/* Tray Arrow Icon */
+.luma-tray-arrow-icon {
+    color: #ffffff;
+}
+
+/* ================= Tray popup ==================== */
+.luma-tray-header { spacing: 8px; }
+.luma-tray-title { font-size: 9pt; font-weight: bold; color: rgba(255, 255, 255, 0.85); }
+
+.luma-tray-button {
+    padding: 6px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.08);
+    transition-duration: 150ms;
+}
+.luma-tray-button:hover { background-color: rgba(255, 255, 255, 0.18); }
+.luma-tray-text-button { padding: 4px 12px; font-size: 9pt; color: rgba(255, 255, 255, 0.75); }
+.luma-tray-text-button.primary { color: #ffffff; font-weight: bold; }
+
+.luma-tray-grid,
+.luma-tray-grid-row { spacing: 4px; }
+
+.luma-tray-pill {
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition-duration: 150ms;
+}
+.luma-tray-pill:hover { background-color: rgba(255, 255, 255, 0.16); }
+
+.luma-tray-wide-list { spacing: 4px; }
+.luma-tray-wide-pill {
+    height: 30px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.06);
+    transition-duration: 150ms;
+}
+.luma-tray-wide-pill:hover { background-color: rgba(255, 255, 255, 0.16); }
+
+.luma-tray-section { spacing: 2px; min-width: 180px; }
+.luma-tray-section-title { font-size: 7.5pt; font-weight: bold; color: rgba(255, 255, 255, 0.5); padding: 2px 4px; }
+.luma-tray-row {
+    spacing: 10px;
+    padding: 4px 6px;
+    border-radius: 10px;
+    background-color: transparent;
+    transition-duration: 120ms;
+}
+.luma-tray-row:hover { background-color: rgba(255, 255, 255, 0.08); }
+
+.luma-tray-empty { color: rgba(255, 255, 255, 0.45); font-size: 8.25pt; padding: 6px 4px; }
+.luma-tray-footer { spacing: 8px; margin-top: 2px; }
+.luma-tray-note { font-size: 7.5pt; color: rgba(255, 255, 255, 0.45); }
+.luma-tray-panel { spacing: 8px; background-color: transparent; border: none; box-shadow: none; }
+
+/* ==================== Overflow menu ==================== */
+.luma-overflow-dots { spacing: 4px; }
+.luma-overflow-button {
+    border-radius: 12px;
+    background-color: transparent;
+    transition-duration: 150ms;
+}
+.luma-overflow-button:hover { background-color: rgba(255, 255, 255, 0.16); }
+.luma-overflow-button:checked { background-color: rgba(255, 255, 255, 0.24); }
+
+.luma-overflow-item {
+    border-radius: 12px;
+    background-color: transparent;
+    transition-duration: 120ms;
+}
+.luma-overflow-item:hover { background-color: rgba(255, 255, 255, 0.14); }
+/* ==================== Start menu ==================== */
+.luma-start-menu-box .luma-start-search,
+.luma-start-menu-box .luma-start-search:hover,
+.luma-start-menu-box .luma-start-search:focus {
+    min-height: 44px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 14px;
+    background-color: transparent;
+    box-shadow: none;
+    color: #ffffff;
+    font-size: 11.25pt;
+    caret-color: #ffffff;
+    selection-background-color: rgba(255, 255, 255, 0.3);
+    selected-color: #ffffff;
+}
+.luma-start-menu-box .luma-start-search .hint-text { color: rgba(255, 255, 255, 0.5); }
+.luma-start-search-icon { icon-size: 18px; color: rgba(255, 255, 255, 0.75); padding-right: 10px; }
+
+.luma-start-section { font-size: 8.25pt; font-weight: bold; letter-spacing: 1px; color: rgba(255, 255, 255, 0.6); }
+.luma-start-title { font-size: 9pt; font-weight: bold; color: #ffffff; }
+.luma-start-best-title { font-size: 15pt; font-weight: bold; color: #ffffff; }
+.luma-start-meta { font-size: 8.25pt; color: rgba(255, 255, 255, 0.62); }
+.luma-start-cell-label { font-size: 9pt; color: rgba(255, 255, 255, 0.92); }
+.luma-start-card-title { font-size: 9.75pt; }
+.luma-start-app-name { font-size: 10.5pt; color: #ffffff; }
+.luma-start-user { font-size: 10.5pt; font-weight: bold; color: #ffffff; }
+.luma-start-empty { font-size: 9.75pt; color: rgba(255, 255, 255, 0.62); padding: 24px 0; }
+.luma-start-letter { font-size: 9.75pt; font-weight: bold; color: #ffffff; padding: 8px 10px 2px; }
+
+.luma-start-item {
+    padding: 12px 2px 10px;
+    border-radius: 14px;
+    background-color: transparent;
+    transition-duration: 120ms;
+}
+.luma-start-item:hover,
+.luma-start-item:focus { background-color: rgba(255, 255, 255, 0.1); }
+
+.luma-start-card {
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.045);
+    transition-duration: 120ms;
+}
+.luma-start-card:hover,
+.luma-start-card:focus { background-color: rgba(255, 255, 255, 0.085); border-color: rgba(255, 255, 255, 0.12); }
+.luma-start-file-card { padding: 7px 7px 10px; }
+
+.luma-start-row {
+    padding: 6px 10px;
+    border-radius: 12px;
+    background-color: transparent;
+    transition-duration: 120ms;
+}
+.luma-start-row:hover,
+.luma-start-row:focus { background-color: rgba(255, 255, 255, 0.09); }
+
+.luma-start-pill {
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: 9pt;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.09);
+    transition-duration: 120ms;
+}
+.luma-start-pill:hover,
+.luma-start-pill:focus { background-color: rgba(255, 255, 255, 0.18); }
+.luma-start-primary { font-weight: bold; color: #111111; background-color: rgba(255, 255, 255, 0.92); }
+.luma-start-primary:hover,
+.luma-start-primary:focus { background-color: #ffffff; }
+
+.luma-start-round {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.06);
+    transition-duration: 120ms;
+}
+.luma-start-round:hover,
+.luma-start-round:focus { background-color: rgba(255, 255, 255, 0.14); }
+.luma-start-back {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 14px;
+}
+.luma-start-power { color: #ff8a8f; border-color: rgba(229, 72, 77, 0.3); background-color: rgba(229, 72, 77, 0.16); }
+.luma-start-power:hover,
+.luma-start-power:focus { background-color: rgba(229, 72, 77, 0.28); }
+
+.luma-start-best {
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+.luma-start-thumb { background-color: rgba(255, 255, 255, 0.08); }
+.luma-start-thumb-code { background-color: #1b1e2b; }
+.luma-start-code { font-family: monospace; color: rgba(225, 230, 255, 0.85); }
+.luma-start-folder {
+    padding: 5px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.16);
+}
+.luma-start-avatar {
+    icon-size: 36px;
+    border-radius: 999px;
+}
+.luma-start-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+.luma-start-run-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+.luma-start-rail { padding: 0 2px; }
+.luma-start-rail-key {
+    width: 22px;
+    font-size: 8.25pt;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.45);
+    background-color: transparent;
+    transition-duration: 120ms;
+}
+.luma-start-rail-key:hover { color: rgba(255, 255, 255, 0.8); background-color: transparent; }
+.luma-start-rail-key:checked { color: #ffffff; background-color: transparent; }
+.luma-start-menu-box { padding: 18px 0 18px 18px; }
+.luma-start-context {
+    padding: 6px;
+    min-width: 190px;
+    border-radius: 14px;
+    background-color: rgba(28, 28, 34, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.luma-start-context-item {
+    padding: 8px 10px;
+    border-radius: 9px;
+    font-size: 9.75pt;
+    color: #ffffff;
+    background-color: transparent;
+}
+.luma-start-context-item:hover,
+.luma-start-context-item:focus { background-color: rgba(255, 255, 255, 0.1); }
+.luma-start-item:focus,
+.luma-start-card:focus,
+.luma-start-row:focus,
+.luma-start-pill:focus,
+.luma-start-round:focus,
+.luma-start-context-item:focus { box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4); }
+.luma-start-primary:focus { box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.35); }
+.luma-start-more { padding: 4px 10px; }
+.luma-start-page-dot {
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    min-height: 6px;
+    padding: 0;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition-duration: 150ms;
+}
+.luma-start-page-dot:hover { background-color: rgba(255, 255, 255, 0.55); }
+.luma-start-page-dot:checked { width: 16px; background-color: #ffffff; }
+.luma-start-menu-box .luma-start-scroll StScrollBar {
+    width: 4px;
+    min-width: 4px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+}
+.luma-start-menu-box .luma-start-scroll StScrollBar StBin#trough {
+    width: 4px;
+    min-width: 4px;
+    border: none;
+    background-color: transparent;
+}
+.luma-start-menu-box .luma-start-scroll StScrollBar StButton#vhandle {
+    width: 3px;
+    min-width: 3px;
+    margin: 6px 0;
+    border: none;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.32);
+}
+.luma-start-menu-box .luma-start-scroll StScrollBar StButton#vhandle:hover,
+.luma-start-menu-box .luma-start-scroll StScrollBar StButton#vhandle:active { background-color: rgba(255, 255, 255, 0.55); }
+
+.luma-start-item:drop { background-color: rgba(255, 255, 255, 0.2); }
+.luma-start-folder-layer { border-radius: 24px; background-color: rgba(0, 0, 0, 0.4); }
+.luma-start-folder-popup {
+    padding: 22px;
+    border-radius: 24px;
+    background-color: rgba(48, 48, 56, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+}
+.luma-start-folder-title { font-size: 13.5pt; font-weight: bold; color: #ffffff; }
+.luma-start-rename {
+    min-height: 32px;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: none;
+    font-size: 12pt;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+}

@@ -1,0 +1,1215 @@
+/*
+* Dhruva GNOME Extension
+* Copyright (C) 2026 NarkAgni
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+
+import St from 'gi://St';
+import Gio from 'gi://Gio';
+import Soup from 'gi://Soup';
+import GLib from 'gi://GLib';
+import Clutter from 'gi://Clutter';
+import GObject from 'gi://GObject';
+
+import { CrispLabel } from './music/CrispLabel.js';
+import { userCacheDir } from '../../core/DataPaths.js';
+import { Settings } from '../../core/SettingsManager.js';
+import { FrameTicker } from '../../core/FrameTicker.js';
+import { MusicPillPopup } from './music/MusicPillPopup.js';
+import { MusicPillSlider } from './music/MusicPillSlider.js';
+import { TimeoutTracker } from '../../core/TimeoutTracker.js';
+import { MusicPlayerService } from './music/MusicPlayerService.js';
+import { LyricsClient, USER_AGENT } from './music/LyricsClient.js';
+import { resetMagnification } from '../magnifier/MagnifierReset.js';
+import { KaraokeLyricsWidget } from './music/KaraokeLyricsWidget.js';
+import { extractColorsFromPixbuf } from './music/MusicColorExtractor.js';
+import { isPointerWithinDockBounds } from '../magnifier/MagnifierMath.js';
+import { isActorAlive, setBoxVertical, loadPixbufAtScale } from '../../core/Utils.js';
+
+
+Gio._promisify(Soup.Session.prototype, 'send_and_read_async', 'send_and_read_finish');
+Gio._promisify(Gio.File.prototype, 'query_info_async', 'query_info_finish');
+Gio._promisify(Gio.File.prototype, 'replace_contents_bytes_async', 'replace_contents_finish');
+
+const MARQUEE_PAUSE_MS = 1200;
+const MARQUEE_MIN_DURATION_MS = 3500;
+const MARQUEE_MS_PER_PX = 42;
+const LYRICS_REVEAL_DELAY_MS = 1200;
+const DOUBLE_CLICK_TIMEOUT_MS = 250;
+const SEEK_STEP_MS = 5000;
+const VOLUME_STEP = 0.05;
+const TRACK_SCROLL_COOLDOWN_MS = 400;
+const ART_DOWNLOAD_TIMEOUT_S = 4;
+const COLOR_SAMPLE_PX = 64;
+const MAX_ART_CACHE_FILES = 100;
+const LYRICS_OFFSET_LIMIT_MS = 10000;
+const LYRIC_WHITE_MIX = 0.35;
+
+async function fileExists(file, cancellable) {
+    try {
+        await file.query_info_async('standard::type', Gio.FileQueryInfoFlags.NONE, GLib.PRIORITY_LOW, cancellable);
+        return true;
+    } catch (_e) {
+        return false;
+    }
+}
+
+export const MusicPill = GObject.registerClass({ GTypeName: 'LumaMusicPill' }, class MusicPill extends St.Widget {
+        _init(dockUI, settings) {
+            super._init({
+                name: 'LumaMusicPill',
+                style_class: 'luma-music-pill-container',
+                reactive: true,
+                track_hover: true,
+                clip_to_allocation: false,
+                layout_manager: new Clutter.BinLayout(),
+            });
+
+            this._dockUI = dockUI;
+            this._settings = settings;
+            this._tracker = new TimeoutTracker();
+            this._cancellable = new Gio.Cancellable();
+            this._isModule = true;
+            this._isStatic = true;
+            this._isMusicPill = true;
+            this._isHovered = false;
+            this._lastArtUrl = null;
+            this._artPath = null;
+            this._lastExtractedColors = null;
+            this._hasValidTrack = false;
+            this._isPlaying = false;
+
+            this._lyrics = [];
+            this._lyricsSynced = false;
+            this._lyricsOffsetMs = 0;
+            this._lyricsVersion = 0;
+            this._currentLyricIndex = -1;
+            this._activeTrackId = '';
+            this._activeTitle = '';
+            this._activeArtist = '';
+            this._activeDuration = 0;
+            this._isLyricsVisible = false;
+
+            this._durationSec = 1;
+            this._hasDuration = false;
+            this._lastBasePositionMs = 0;
+            this._lastPositionTimeMs = GLib.get_monotonic_time() / 1000;
+            this._interpolatedTickId = 0;
+
+            this._clickTimerId = 0;
+            this._lastTrackScrollTime = 0;
+            this._modeTransitionTimeoutId = 0;
+            this._lyricsApplyIdleId = 0;
+            this._lyricsReadyForTrack = false;
+
+            this._cacheDir = userCacheDir('music-art');
+            GLib.mkdir_with_parents(this._cacheDir, 0o755);
+            this._pruneArtCache();
+
+            this._httpSession = new Soup.Session();
+            this._httpSession.timeout = ART_DOWNLOAD_TIMEOUT_S;
+            this._httpSession.user_agent = USER_AGENT;
+
+            this._service = new MusicPlayerService();
+            this._lyricsClient = new LyricsClient();
+            this.connectObject('destroy', () => this._onDestroy(), this);
+            this.connectObject('notify::allocation', () => {
+                if (this._cancellable && this._dockUI && this._dockUI.syncPanelSpace) {
+                    this._dockUI.syncPanelSpace();
+                }
+            }, this);
+
+            this._buildUI();
+
+            this._service.connectObject('playback-state-changed',
+                (_service, isPlaying, title, artist, artUrl, duration, hasPlayer) => {
+                    this._hasDuration = duration > 0;
+                    this._durationSec = this._hasDuration ? duration : 1;
+                    this._handlePlaybackEvent(isPlaying, title, artist, artUrl, duration, hasPlayer);
+                }, this);
+
+            this._service.connectObject('position-changed',
+                (_service, positionMs, monoMs) => {
+                    this._lastBasePositionMs = positionMs;
+                    this._lastPositionTimeMs = monoMs || (GLib.get_monotonic_time() / 1000);
+                    this._updateSliderProgress(positionMs);
+                }, this);
+
+            this.connectObject('notify::hover', () => {
+                if (!this._cancellable) return;
+                this._isHovered = this.hover;
+                this._setSideButtonsVisible(this._isHovered);
+
+                const dockActor = this._dockUI && this._dockUI.actor;
+                if (dockActor) {
+                    if (this._isHovered) {
+                        dockActor._suppressZoom = true;
+                        resetMagnification(dockActor, 160, false);
+                    } else {
+                        dockActor._suppressZoom = false;
+                        const [cx, cy] = global.get_pointer();
+                        const isVert = this._dockUI.dockPosition === 'LEFT' || this._dockUI.dockPosition === 'RIGHT';
+                        if (!isPointerWithinDockBounds(dockActor, cx, cy, isVert, this._settings)) {
+                            resetMagnification(dockActor, 160, false);
+                        }
+                    }
+                }
+            }, this);
+
+            this.connectObject('scroll-event', (_actor, event) => this._onScroll(event), this);
+
+            this._popup = new MusicPillPopup(this, dockUI);
+
+            this.connectObject('button-press-event', (_actor, event) => this._onButtonPress(event), this);
+
+            if (this._settings) {
+                this._settings.connectObject(
+                    'changed::blur-enabled', () => this._updatePillBgAppearance(),
+                    'changed::blur-mode', () => this._updatePillBgAppearance(),
+                    'changed::music-pill-progress', () => this._applyProgressStyle(),
+                    'changed::music-pill-lyrics', () => this._onLyricsSettingChanged(),
+                    this
+                );
+            }
+
+            this.hide();
+        }
+
+        _buildUI() {
+            this._pillBg = new St.Widget({
+                style_class: 'luma-music-pill',
+                x_expand: true,
+                y_expand: true,
+                reactive: false,
+            });
+            this.add_child(this._pillBg);
+
+            this._mainBox = new St.BoxLayout({
+                reactive: true,
+                style_class: 'luma-music-pill',
+                style: 'background-color: transparent; border: none; box-shadow: none;',
+                y_align: Clutter.ActorAlign.CENTER,
+                x_align: Clutter.ActorAlign.CENTER,
+            });
+            setBoxVertical(this._mainBox, false);
+            this.add_child(this._mainBox);
+
+            this._slider = new MusicPillSlider();
+            this.add_child(this._slider);
+
+            this._artBin = new St.Bin({
+                style_class: 'luma-music-art-bin',
+                y_align: Clutter.ActorAlign.CENTER,
+                x_align: Clutter.ActorAlign.CENTER,
+                reactive: false,
+            });
+
+            this._artFallbackIcon = new St.Icon({
+                icon_size: 16,
+                icon_name: 'audio-x-generic-symbolic',
+                opacity: 180,
+            });
+            this._artBin.set_child(this._artFallbackIcon);
+
+            this._artRing = new MusicPillSlider(true);
+            this._artWrap = new St.Widget({
+                layout_manager: new Clutter.BinLayout(),
+                y_align: Clutter.ActorAlign.CENTER,
+            });
+            this._artWrap.add_child(this._artBin);
+            this._artWrap.add_child(this._artRing);
+            this._mainBox.add_child(this._artWrap);
+            this._applyProgressStyle();
+
+            this._metaViewport = new St.Widget({
+                style_class: 'luma-music-meta-box',
+                clip_to_allocation: true,
+                layout_manager: new Clutter.BinLayout(),
+                y_align: Clutter.ActorAlign.CENTER,
+            });
+
+            this._infoBox = new St.BoxLayout({
+                y_align: Clutter.ActorAlign.CENTER,
+                x_expand: true,
+            });
+            setBoxVertical(this._infoBox, true);
+
+            const makeMarqueeRow = (styleClass, xAlign, fontDesc, color) => {
+                const viewport = new St.Widget({
+                    clip_to_allocation: true,
+                    layout_manager: new Clutter.FixedLayout(),
+                    x_expand: true,
+                    y_align: Clutter.ActorAlign.CENTER,
+                    x_align: xAlign,
+                });
+
+                const scrollBin = new St.Widget({
+                    layout_manager: new Clutter.BinLayout(),
+                    x_align: Clutter.ActorAlign.START,
+                    y_align: Clutter.ActorAlign.CENTER,
+                    reactive: false,
+                });
+
+                const label = new CrispLabel({
+                    font_desc: fontDesc,
+                    color: color,
+                    style_class: styleClass,
+                    y_align: Clutter.ActorAlign.CENTER,
+                    x_align: Clutter.ActorAlign.START,
+                });
+
+                scrollBin.add_child(label);
+                viewport.add_child(scrollBin);
+
+                return { viewport, scrollBin, label };
+            };
+
+            const titleRow = makeMarqueeRow(
+                'luma-music-title',
+                Clutter.ActorAlign.START,
+                'Sans Bold 11px',
+                'rgba(255,255,255,1.0)'
+            );
+            this._titleViewport = titleRow.viewport;
+            this._titleScroll = titleRow.scrollBin;
+            this._titleLabel = titleRow.label;
+
+            const artistRow = makeMarqueeRow(
+                'luma-music-artist',
+                Clutter.ActorAlign.START,
+                'Sans 10px',
+                'rgba(255,255,255,0.75)'
+            );
+            this._artistViewport = artistRow.viewport;
+            this._artistScroll = artistRow.scrollBin;
+            this._artistLabel = artistRow.label;
+
+            this._infoBox.add_child(this._titleViewport);
+            this._infoBox.add_child(this._artistViewport);
+            this._metaViewport.add_child(this._infoBox);
+
+            this._lyricsBox = new St.BoxLayout({
+                y_align: Clutter.ActorAlign.CENTER,
+                x_expand: true,
+                opacity: 0,
+                visible: false,
+                style: 'spacing: 1px;',
+            });
+            setBoxVertical(this._lyricsBox, true);
+
+            const miniRow = makeMarqueeRow(
+                'luma-music-mini-title',
+                Clutter.ActorAlign.CENTER,
+                'Sans Bold 10.5px',
+                'rgba(255,255,255,1.0)'
+            );
+            this._miniViewport = miniRow.viewport;
+            this._miniScroll = miniRow.scrollBin;
+            this._lyricsHeaderTitle = miniRow.label;
+
+            this._karaokeWidget = new KaraokeLyricsWidget(160, 24);
+
+            this._lyricsBox.add_child(this._miniViewport);
+            this._lyricsBox.add_child(this._karaokeWidget);
+            this._metaViewport.add_child(this._lyricsBox);
+
+            this._mainBox.add_child(this._metaViewport);
+
+            this._controlsBox = new St.BoxLayout({
+                y_align: Clutter.ActorAlign.CENTER,
+            });
+            setBoxVertical(this._controlsBox, false);
+
+            this._prevBtn = new St.Button({
+                style_class: 'luma-music-btn',
+                style: 'color: #ffffff;',
+                child: new St.Icon({ icon_name: 'media-skip-backward-symbolic', icon_size: 13, style: 'color: #ffffff;' }),
+                opacity: 0,
+                width: 0,
+                reactive: false,
+                clip_to_allocation: true,
+            });
+            this._prevBtn.set_scale(0.3, 0.3);
+            this._prevBtn.set_pivot_point(0.5, 0.5);
+            this._prevBtn.connectObject('clicked', () => {
+                if (this._cancellable && this._service) this._service.sendControl('Previous');
+            }, this);
+
+            this._playIcon = new St.Icon({ icon_name: 'media-playback-start-symbolic', icon_size: 14 });
+            this._playBtn = new St.Button({
+                style_class: 'luma-music-btn luma-music-btn-play',
+                child: this._playIcon,
+                reactive: true,
+            });
+            this._playBtn.connectObject('clicked', () => {
+                if (this._cancellable && this._service) this._service.sendControl('PlayPause');
+            }, this);
+
+            this._nextBtn = new St.Button({
+                style_class: 'luma-music-btn',
+                style: 'color: #ffffff;',
+                child: new St.Icon({ icon_name: 'media-skip-forward-symbolic', icon_size: 13, style: 'color: #ffffff;' }),
+                opacity: 0,
+                width: 0,
+                reactive: false,
+                clip_to_allocation: true,
+            });
+            this._nextBtn.set_scale(0.3, 0.3);
+            this._nextBtn.set_pivot_point(0.5, 0.5);
+            this._nextBtn.connectObject('clicked', () => {
+                if (this._cancellable && this._service) this._service.sendControl('Next');
+            }, this);
+
+            this._controlsBox.add_child(this._prevBtn);
+            this._controlsBox.add_child(this._playBtn);
+            this._controlsBox.add_child(this._nextBtn);
+            this._mainBox.add_child(this._controlsBox);
+        }
+
+        _startLyricsSyncLoop() {
+            if (this._interpolatedTickId) {
+                this._tracker.remove(this._interpolatedTickId);
+                this._interpolatedTickId = 0;
+            }
+
+            this._interpolatedTickId = this._tracker.addTimeout(GLib.PRIORITY_DEFAULT, 50, () => {
+                if (!this._cancellable || !isActorAlive(this)) {
+                    this._interpolatedTickId = 0;
+                    return GLib.SOURCE_REMOVE;
+                }
+
+                if (this._isPlaying) {
+                    const nowMono = GLib.get_monotonic_time() / 1000;
+                    const elapsed = Math.max(0, nowMono - this._lastPositionTimeMs);
+                    const accuratePositionMs = this._lastBasePositionMs + elapsed;
+
+                    this._updateSliderProgress(accuratePositionMs);
+
+                    if (this._lyricsSynced) {
+                        this._syncLyricsToPosition(accuratePositionMs - this._lyricsOffsetMs);
+                    }
+                }
+
+                return GLib.SOURCE_CONTINUE;
+            });
+        }
+
+        _stopLyricsSyncLoop() {
+            if (this._interpolatedTickId) {
+                this._tracker.remove(this._interpolatedTickId);
+                this._interpolatedTickId = 0;
+            }
+        }
+
+        _updateSliderProgress(positionMs) {
+            if (!isActorAlive(this._slider) || !isActorAlive(this._artRing)) return;
+            const totalMs = Math.max(1000, this._durationSec * 1000);
+            const ratio = Math.max(0.0, Math.min(1.0, positionMs / totalMs));
+            this._slider.setProgress(ratio);
+            this._artRing.setProgress(ratio);
+        }
+
+        _applyProgressStyle() {
+            const style = Settings.musicPillProgress;
+            this._slider.visible = style === 'pill';
+            this._artRing.visible = style === 'art';
+        }
+
+        _onScroll(event) {
+            if (!this._isHovered || !this._service) return Clutter.EVENT_PROPAGATE;
+
+            const dir = event.get_scroll_direction();
+            const step = dir === Clutter.ScrollDirection.UP ? 1 : (dir === Clutter.ScrollDirection.DOWN ? -1 : 0);
+            if (!step) return Clutter.EVENT_PROPAGATE;
+
+            const mode = Settings.musicPillScrollAction;
+            if (mode === 'volume') {
+                this._service.changeVolume(VOLUME_STEP * step);
+            } else if (mode === 'seek') {
+                this._service.seekBy(SEEK_STEP_MS * step);
+            } else if (mode === 'track') {
+                const now = Date.now();
+                if (now - this._lastTrackScrollTime >= TRACK_SCROLL_COOLDOWN_MS) {
+                    this._lastTrackScrollTime = now;
+                    this._service.sendControl(step > 0 ? 'Next' : 'Previous');
+                }
+            } else {
+                return Clutter.EVENT_PROPAGATE;
+            }
+            return Clutter.EVENT_STOP;
+        }
+
+        _onButtonPress(event) {
+            const button = event.get_button();
+
+            if (button === Clutter.BUTTON_SECONDARY) {
+                this._runAction(Settings.musicPillRightClickAction);
+                return Clutter.EVENT_STOP;
+            }
+            if (button === Clutter.BUTTON_MIDDLE) {
+                this._runAction(Settings.musicPillMiddleClickAction);
+                return Clutter.EVENT_STOP;
+            }
+            if (button !== Clutter.BUTTON_PRIMARY) return Clutter.EVENT_PROPAGATE;
+
+            const target = global.stage.get_event_actor(event);
+            if (target && [this._prevBtn, this._playBtn, this._nextBtn].some(btn => btn.contains(target))) {
+                return Clutter.EVENT_PROPAGATE;
+            }
+
+            if (this._clickTimerId) {
+                this._tracker.remove(this._clickTimerId);
+                this._clickTimerId = 0;
+                this._runAction(Settings.musicPillDoubleClickAction);
+                return Clutter.EVENT_STOP;
+            }
+
+            if (Settings.musicPillDoubleClickAction === 'none') {
+                this._runAction(Settings.musicPillClickAction);
+                return Clutter.EVENT_PROPAGATE;
+            }
+
+            this._clickTimerId = this._tracker.addTimeout(GLib.PRIORITY_DEFAULT, DOUBLE_CLICK_TIMEOUT_MS, () => {
+                this._clickTimerId = 0;
+                this._runAction(Settings.musicPillClickAction);
+                return GLib.SOURCE_REMOVE;
+            });
+            return Clutter.EVENT_PROPAGATE;
+        }
+
+        _runAction(action) {
+            if (!this._cancellable || !this._service) return;
+
+            switch (action) {
+                case 'play-pause':
+                    this._service.sendControl('PlayPause');
+                    break;
+                case 'next':
+                    this._service.sendControl('Next');
+                    break;
+                case 'previous':
+                    this._service.sendControl('Previous');
+                    break;
+                case 'player':
+                    this._popup.toggle();
+                    break;
+                case 'window':
+                    this._service.togglePlayerWindow(this._dockUI);
+                    break;
+            }
+        }
+
+        _syncLyricsToPosition(positionMs) {
+            if (!this._lyrics || this._lyrics.length === 0) return;
+
+            let activeIdx = -1;
+            for (let i = this._lyrics.length - 1; i >= 0; i--) {
+                if (positionMs >= this._lyrics[i].time) {
+                    activeIdx = i;
+                    break;
+                }
+            }
+
+            if (activeIdx === -1) {
+                this._currentLyricIndex = -1;
+                if (this._isLyricsVisible && !this._modeTransitionTimeoutId) {
+                    this._switchMode(false);
+                }
+                return;
+            }
+
+            if (!this._isLyricsVisible && !this._modeTransitionTimeoutId) {
+                this._switchMode(true);
+            }
+
+            if (activeIdx !== this._currentLyricIndex) {
+                this._currentLyricIndex = activeIdx;
+
+                let lineDurationMs = 3500;
+                if (activeIdx + 1 < this._lyrics.length) {
+                    const rawGap = this._lyrics[activeIdx + 1].time - this._lyrics[activeIdx].time;
+                    lineDurationMs = Math.max(800, rawGap);
+                }
+
+                if (isActorAlive(this._karaokeWidget)) {
+                    this._karaokeWidget.setLyricLine(this._lyrics[activeIdx].text, lineDurationMs);
+                }
+            }
+        }
+
+        _scheduleMarquee(scrollBin, viewport, label) {
+            if (!this._cancellable) return;
+            if (!isActorAlive(scrollBin) || !isActorAlive(viewport) || !isActorAlive(label)) return;
+
+            this._cancelMarquee(scrollBin);
+
+            scrollBin._marqueeIdleId = this._tracker.addIdle(GLib.PRIORITY_DEFAULT_IDLE, () => {
+                scrollBin._marqueeIdleId = 0;
+                if (!this._cancellable) return GLib.SOURCE_REMOVE;
+                if (!isActorAlive(scrollBin) || !isActorAlive(viewport) || !isActorAlive(label)) {
+                    return GLib.SOURCE_REMOVE;
+                }
+
+                const [, textWidth] = label.get_preferred_width(-1);
+                const containerWidth = viewport.get_width()
+                    || viewport.get_preferred_width(-1)[1]
+                    || 0;
+
+                if (containerWidth <= 0 || textWidth <= containerWidth) {
+                    scrollBin.translation_x = 0;
+                    return GLib.SOURCE_REMOVE;
+                }
+
+                const overflow = textWidth - containerWidth;
+                const scrollDuration = Math.max(MARQUEE_MIN_DURATION_MS, Math.round(overflow * MARQUEE_MS_PER_PX));
+
+                const state = {
+                    active: true,
+                    forward: true,
+                    phaseStart: 0,
+                    pauseId: 0,
+                    ticker: null,
+                };
+                scrollBin._marqueeState = state;
+
+                const isLive = () => Boolean(this._cancellable) && isActorAlive(scrollBin) &&
+                    scrollBin._marqueeState === state && state.active;
+
+                const startPause = () => {
+                    state.pauseId = this._tracker.addTimeout(GLib.PRIORITY_DEFAULT, MARQUEE_PAUSE_MS, () => {
+                        state.pauseId = 0;
+                        if (isLive()) {
+                            state.phaseStart = GLib.get_monotonic_time() / 1000;
+                            state.ticker.start();
+                        }
+                        return GLib.SOURCE_REMOVE;
+                    });
+                };
+
+                state.ticker = new FrameTicker(scrollBin, () => {
+                    if (!isLive()) return false;
+
+                    const elapsed = GLib.get_monotonic_time() / 1000 - state.phaseStart;
+                    const t = Math.min(1, elapsed / scrollDuration);
+                    const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+                    scrollBin.translation_x = -overflow * (state.forward ? e : 1 - e);
+                    if (t < 1) return true;
+
+                    state.forward = !state.forward;
+                    startPause();
+                    return false;
+                });
+
+                startPause();
+                return GLib.SOURCE_REMOVE;
+            });
+        }
+
+        _cancelMarquee(scrollBin) {
+            if (!scrollBin) return;
+
+            if (scrollBin._marqueeIdleId) {
+                this._tracker.remove(scrollBin._marqueeIdleId);
+                scrollBin._marqueeIdleId = 0;
+            }
+
+            const state = scrollBin._marqueeState;
+            if (state) {
+                state.active = false;
+                if (state.pauseId) {
+                    this._tracker.remove(state.pauseId);
+                    state.pauseId = 0;
+                }
+                if (state.ticker) {
+                    state.ticker.destroy();
+                    state.ticker = null;
+                }
+            }
+            scrollBin._marqueeState = null;
+
+            if (isActorAlive(scrollBin)) {
+                scrollBin.remove_all_transitions();
+                scrollBin.translation_x = 0;
+            }
+        }
+
+        _restartAllMarquees() {
+            if (!this._cancellable) return;
+
+            if (!this._isLyricsVisible) {
+                this._scheduleMarquee(this._titleScroll, this._titleViewport, this._titleLabel);
+                this._scheduleMarquee(this._artistScroll, this._artistViewport, this._artistLabel);
+            } else {
+                this._cancelMarquee(this._titleScroll);
+                this._cancelMarquee(this._artistScroll);
+            }
+
+            if (this._isLyricsVisible) {
+                this._scheduleMarquee(this._miniScroll, this._miniViewport, this._lyricsHeaderTitle);
+            } else {
+                this._cancelMarquee(this._miniScroll);
+            }
+        }
+
+        _handlePlaybackEvent(isPlaying, title, artist, artUrl, duration, hasPlayer) {
+            if (!this._cancellable || !isActorAlive(this)) return;
+
+            const isAllowed = Settings.showMusicPill;
+
+            if (!hasPlayer || !isAllowed || !title) {
+                const hadTrack = this._hasValidTrack;
+                this._hasValidTrack = false;
+                this._stopLyricsSyncLoop();
+                if (this.visible) {
+                    this.hide();
+                    if (this._dockUI) {
+                        if (this._dockUI.queueRender) this._dockUI.queueRender('full', true);
+                        if (this._dockUI.syncPanelSpace) this._dockUI.syncPanelSpace();
+                    }
+                } else if (hadTrack && this._dockUI) {
+                    if (this._dockUI.queueRender) this._dockUI.queueRender('full', true);
+                    if (this._dockUI.syncPanelSpace) this._dockUI.syncPanelSpace();
+                }
+                return;
+            }
+
+            const wasNotValid = !this._hasValidTrack;
+            this._hasValidTrack = true;
+
+            const safeTitle = title ? title.trim() : '';
+            const safeArtist = artist ? artist.trim() : '';
+            const trackId = safeTitle + '::' + safeArtist;
+
+            const trackChanged = this._activeTrackId !== trackId;
+            const playStateChanged = this._isPlaying !== isPlaying;
+            this._isPlaying = isPlaying;
+
+            if (isPlaying) {
+                this._startLyricsSyncLoop();
+            } else {
+                this._stopLyricsSyncLoop();
+            }
+
+            if (trackChanged) {
+                this._activeTrackId = trackId;
+                this._activeTitle = safeTitle;
+                this._activeArtist = safeArtist;
+                this._activeDuration = duration;
+                this._clearLyrics();
+
+                this._slider.reset();
+                this._artRing.reset();
+
+                this._cancelModeTransition();
+                this._switchMode(false, 0);
+
+                if (Settings.musicPillLyrics) this._fetchLyrics(safeTitle, safeArtist, duration);
+            }
+
+            if (isActorAlive(this._titleLabel) && this._titleLabel.text !== safeTitle) {
+                this._titleLabel.text = safeTitle;
+            }
+            if (isActorAlive(this._lyricsHeaderTitle) && this._lyricsHeaderTitle.text !== safeTitle) {
+                this._lyricsHeaderTitle.text = safeTitle;
+            }
+            if (isActorAlive(this._artistLabel) && this._artistLabel.text !== safeArtist) {
+                this._artistLabel.text = safeArtist;
+            }
+            if (isActorAlive(this._playIcon)) {
+                this._playIcon.icon_name = isPlaying ? 'media-playback-pause-symbolic' : 'media-playback-start-symbolic';
+            }
+
+            this._loadArtwork(artUrl);
+
+            if (!this.visible || wasNotValid) {
+                this.show();
+                if (this._dockUI) {
+                    if (this._dockUI.queueRender) this._dockUI.queueRender('full', true);
+                    if (this._dockUI.syncPanelSpace) this._dockUI.syncPanelSpace();
+                }
+            }
+
+            this._setSideButtonsVisible(this._isHovered);
+
+            if (playStateChanged || trackChanged) {
+                if (!isPlaying) {
+                    this._cancelModeTransition();
+                    this._switchMode(false);
+                } else if (!trackChanged) {
+                    this._scheduleLyricsReveal();
+                }
+            }
+
+            if (!trackChanged && this._lyricsReadyForTrack && isPlaying && !this._isLyricsVisible) {
+                this._scheduleLyricsReveal();
+            }
+        }
+
+        _scheduleLyricsReveal() {
+            if (!this._cancellable) return;
+            this._cancelModeTransition();
+
+            this._modeTransitionTimeoutId = this._tracker.addTimeout(
+                GLib.PRIORITY_DEFAULT,
+                LYRICS_REVEAL_DELAY_MS,
+                () => {
+                    this._modeTransitionTimeoutId = 0;
+
+                    if (!this._cancellable) return GLib.SOURCE_REMOVE;
+                    if (!isActorAlive(this)) return GLib.SOURCE_REMOVE;
+                    if (!this._isPlaying) return GLib.SOURCE_REMOVE;
+                    if (!this._lyricsReadyForTrack) return GLib.SOURCE_REMOVE;
+
+                    this._switchMode(true);
+                    return GLib.SOURCE_REMOVE;
+                }
+            );
+        }
+
+        _cancelModeTransition() {
+            if (this._modeTransitionTimeoutId) {
+                this._tracker.remove(this._modeTransitionTimeoutId);
+                this._modeTransitionTimeoutId = 0;
+            }
+        }
+
+        _clearLyrics() {
+            this._lyrics = [];
+            this._lyricsSynced = false;
+            this._lyricsOffsetMs = 0;
+            this._lyricsReadyForTrack = false;
+            this._currentLyricIndex = -1;
+            this._lyricsVersion++;
+            if (isActorAlive(this._karaokeWidget)) this._karaokeWidget.resetState();
+        }
+
+        _onLyricsSettingChanged() {
+            if (!this._cancellable) return;
+
+            if (Settings.musicPillLyrics) {
+                if (this._hasValidTrack) this._fetchLyrics(this._activeTitle, this._activeArtist, this._activeDuration);
+                return;
+            }
+
+            this._clearLyrics();
+            this._cancelModeTransition();
+            this._switchMode(false, 200);
+        }
+
+        async _fetchLyrics(title, artist, duration) {
+            if (!this._cancellable || !this._lyricsClient) return;
+
+            const requestedTrackId = title + '::' + artist;
+            let entry = null;
+            try {
+                entry = await this._lyricsClient.getLyrics(title, artist, duration, this._service.album);
+            } catch (_e) {
+                entry = null;
+            }
+            if (!this._cancellable || !isActorAlive(this)) return;
+
+            if (this._lyricsApplyIdleId) this._tracker.remove(this._lyricsApplyIdleId);
+            this._lyricsApplyIdleId = this._tracker.addIdle(GLib.PRIORITY_DEFAULT, () => {
+                this._lyricsApplyIdleId = 0;
+                if (!this._cancellable || !isActorAlive(this)) return GLib.SOURCE_REMOVE;
+                if (this._activeTrackId !== requestedTrackId || !Settings.musicPillLyrics) return GLib.SOURCE_REMOVE;
+
+                this._clearLyrics();
+                if (entry) {
+                    this._lyrics = entry.lines;
+                    this._lyricsSynced = entry.synced;
+                    this._lyricsOffsetMs = entry.offset || 0;
+                    this._lyricsReadyForTrack = entry.synced;
+                    this._lyricsVersion++;
+                    if (entry.synced && this._isPlaying && !this._isLyricsVisible) this._scheduleLyricsReveal();
+                } else {
+                    this._cancelModeTransition();
+                    this._switchMode(false, 200);
+                }
+                return GLib.SOURCE_REMOVE;
+            });
+        }
+
+        get hasDuration() {
+            return this._hasDuration;
+        }
+
+        get lyricsLines() {
+            return this._lyrics;
+        }
+
+        get lyricsSynced() {
+            return this._lyricsSynced;
+        }
+
+        get lyricsVersion() {
+            return this._lyricsVersion;
+        }
+
+        get currentLyricIndex() {
+            return this._currentLyricIndex;
+        }
+
+        get lyricsOffsetMs() {
+            return this._lyricsOffsetMs;
+        }
+
+        seekToLyric(index) {
+            const line = this._lyrics[index];
+            if (!line || !this._lyricsSynced || !this._service) return;
+            this._service.seekPosition(Math.max(0, line.time + this._lyricsOffsetMs));
+        }
+
+        adjustLyricsOffset(deltaMs) {
+            if (!this._lyricsSynced || !this._lyricsClient) return;
+            this._lyricsOffsetMs = Math.max(-LYRICS_OFFSET_LIMIT_MS, Math.min(LYRICS_OFFSET_LIMIT_MS, this._lyricsOffsetMs + deltaMs));
+            this._lyricsClient.setOffset(this._activeTitle, this._activeArtist, this._lyricsOffsetMs);
+            this._currentLyricIndex = -1;
+        }
+
+        _switchMode(showLyrics, durationOverride = null) {
+            if (!this._cancellable || !isActorAlive(this)) return;
+
+            const outActor = showLyrics ? this._infoBox : this._lyricsBox;
+            const inActor = showLyrics ? this._lyricsBox : this._infoBox;
+
+            if (!isActorAlive(outActor) || !isActorAlive(inActor)) return;
+
+            this._isLyricsVisible = showLyrics;
+            const duration = durationOverride !== null ? durationOverride : 300;
+
+            outActor.remove_all_transitions();
+            inActor.remove_all_transitions();
+
+            inActor.show();
+
+            if (duration === 0) {
+                outActor.opacity = 0;
+                outActor.hide();
+                inActor.opacity = 255;
+                if (this._cancellable) this._restartAllMarquees();
+            } else {
+                outActor.ease({
+                    opacity: 0,
+                    duration: duration,
+                    mode: Clutter.AnimationMode.EASE_OUT_QUAD,
+                    onComplete: () => {
+                        if (!isActorAlive(outActor)) return;
+                        outActor.hide();
+                        if (isActorAlive(this) && this._cancellable) this._restartAllMarquees();
+                    },
+                });
+
+                inActor.ease({
+                    opacity: 255,
+                    duration: duration,
+                    mode: Clutter.AnimationMode.EASE_IN_QUAD,
+                });
+            }
+
+            if (this._metaViewport && this._metaViewport.queue_relayout) {
+                this._metaViewport.queue_relayout();
+            }
+        }
+
+        _setSideButtonsVisible(visible) {
+            if (!this._cancellable || !isActorAlive(this)) return;
+
+            const buttons = [[this._prevBtn, Settings.musicPillShowPrev], [this._nextBtn, Settings.musicPillShowNext]];
+            for (const [btn, isEnabled] of buttons) {
+                if (!isActorAlive(btn)) continue;
+                const isShown = visible && isEnabled;
+
+                btn.remove_all_transitions();
+                btn.reactive = isShown;
+
+                btn.ease({
+                    opacity: isShown ? 255 : 0,
+                    width: isShown ? 24 : 0,
+                    scale_x: isShown ? 1.0 : 0.3,
+                    scale_y: isShown ? 1.0 : 0.3,
+                    duration: 160,
+                    mode: isShown ? Clutter.AnimationMode.EASE_OUT_QUAD : Clutter.AnimationMode.EASE_IN_QUAD,
+                });
+            }
+        }
+
+        async _loadArtwork(artUrl) {
+            if (!this._cancellable || !isActorAlive(this)) return;
+
+            if (!artUrl) {
+                this._pendingArtUrl = null;
+                this._resetArt();
+                return;
+            }
+
+            if (artUrl === this._lastArtUrl || artUrl === this._pendingArtUrl) return;
+            this._pendingArtUrl = artUrl;
+
+            let localPath = artUrl;
+            if (artUrl.startsWith('file://')) {
+                localPath = Gio.File.new_for_uri(artUrl).get_path();
+            } else if (artUrl.startsWith('http://') || artUrl.startsWith('https://')) {
+                localPath = await this._downloadImage(artUrl);
+            }
+
+            const exists = localPath ? await fileExists(Gio.File.new_for_path(localPath), this._cancellable) : false;
+            if (!this._cancellable || !isActorAlive(this) || this._pendingArtUrl !== artUrl) return;
+            this._pendingArtUrl = null;
+
+            if (exists) {
+                this._lastArtUrl = artUrl;
+                this._artPath = localPath;
+                this._applyArtStyle(localPath);
+            } else {
+                this._resetArt();
+            }
+        }
+
+        async _downloadImage(url) {
+            if (!this._cancellable) return null;
+
+            const urlParts = url.split('/');
+            let uniqueID = urlParts[urlParts.length - 1].split('?')[0].replace(/[^a-z0-9]/gi, '_');
+            if (!uniqueID || uniqueID.length < 2) uniqueID = 'img_' + Math.floor(Math.random() * 10000);
+
+            const filePath = GLib.build_filenamev([this._cacheDir, uniqueID + '.jpg']);
+            const file = Gio.File.new_for_path(filePath);
+
+            if (await fileExists(file, this._cancellable)) return filePath;
+
+            const msg = Soup.Message.new('GET', url);
+
+            try {
+                const bytes = await this._httpSession.send_and_read_async(msg, GLib.PRIORITY_DEFAULT, this._cancellable);
+                if (!this._cancellable) return null;
+
+                if (msg.status_code === 200 && bytes) {
+                    await file.replace_contents_bytes_async(bytes, null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, this._cancellable);
+                    return filePath;
+                }
+            } catch (_e) {
+                return null;
+            }
+            return null;
+        }
+
+        _updatePillBgAppearance() {
+            if (!this._cancellable || !isActorAlive(this._pillBg)) return;
+
+            const isBlurEnabled = Boolean(Settings.blurEnabled);
+            const colors = this._lastExtractedColors;
+
+            let borderRgba = 'rgba(255, 255, 255, 0.14)';
+            if (colors && colors.accent) {
+                const rgb = colors.accent.match(/\d+/g);
+                if (rgb && rgb.length >= 3) {
+                    borderRgba = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0.22)`;
+                }
+            }
+
+            if (isBlurEnabled) {
+                this._pillBg.style = `background-color: transparent; border: 1px solid ${borderRgba}; box-shadow: none;`;
+                return;
+            }
+
+            if (!colors) {
+                this._pillBg.style = '';
+                return;
+            }
+
+            this._pillBg.style = `background-color: ${colors.background}; border: 1px solid ${borderRgba};`;
+        }
+
+        async _applyArtStyle(filePath) {
+            if (!this._cancellable || !isActorAlive(this) || !isActorAlive(this._artBin)) return;
+
+            const fileUri = Gio.File.new_for_path(filePath).get_uri();
+            this._artBin.style = 'background-image: url("' + fileUri + '"); background-size: cover; background-position: center; border-radius: 999px;';
+            if (isActorAlive(this._artFallbackIcon)) this._artFallbackIcon.visible = false;
+
+            let pixbuf;
+            try {
+                pixbuf = await loadPixbufAtScale(filePath, COLOR_SAMPLE_PX, this._cancellable);
+            } catch (_e) {
+                return;
+            }
+            if (!this._cancellable || !isActorAlive(this)) return;
+
+            const colors = extractColorsFromPixbuf(pixbuf);
+            if (!colors) return;
+            this._lastExtractedColors = colors;
+
+            const rgb = colors.accent.match(/\d+/g);
+
+            let iconColor = '#ffffff';
+            if (rgb && rgb.length >= 3) {
+                const r = parseInt(rgb[0], 10);
+                const g = parseInt(rgb[1], 10);
+                const b = parseInt(rgb[2], 10);
+                const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255.0;
+                if (lum > 0.60) {
+                    iconColor = '#121212';
+                }
+            }
+
+            this._updatePillBgAppearance();
+
+            if (isActorAlive(this._playBtn)) {
+                this._playBtn.style = `background-color: ${colors.accent}; color: ${iconColor};`;
+            }
+            if (isActorAlive(this._playIcon)) {
+                this._playIcon.style = `color: ${iconColor};`;
+            }
+
+            if (isActorAlive(this._prevBtn)) {
+                this._prevBtn.style = 'color: #ffffff;';
+            }
+            if (isActorAlive(this._nextBtn)) {
+                this._nextBtn.style = 'color: #ffffff;';
+            }
+
+            if (rgb && rgb.length >= 3) {
+                const [r, g, b] = rgb.slice(0, 3).map(value => parseInt(value, 10) / 255.0);
+                this._slider.setColor(r, g, b);
+                this._artRing.setColor(r, g, b);
+                const [lr, lg, lb] = [r, g, b].map(value => value + (1.0 - value) * LYRIC_WHITE_MIX);
+                this._karaokeWidget.setColor(lr, lg, lb);
+            }
+        }
+
+        _resetArt() {
+            if (!this._cancellable || !isActorAlive(this)) return;
+            this._lastArtUrl = null;
+            this._artPath = null;
+            this._lastExtractedColors = null;
+            if (isActorAlive(this._artBin)) this._artBin.style = '';
+            if (isActorAlive(this._artFallbackIcon)) this._artFallbackIcon.visible = true;
+
+            this._updatePillBgAppearance();
+
+            if (isActorAlive(this._playBtn)) this._playBtn.style = '';
+            if (isActorAlive(this._playIcon)) this._playIcon.style = '';
+            if (isActorAlive(this._prevBtn)) this._prevBtn.style = 'color: #ffffff;';
+            if (isActorAlive(this._nextBtn)) this._nextBtn.style = 'color: #ffffff;';
+
+            for (const progress of [this._slider, this._artRing]) {
+                progress.setColor(1.0, 1.0, 1.0);
+                progress.reset();
+            }
+            if (isActorAlive(this._karaokeWidget)) this._karaokeWidget.setColor(1.0, 1.0, 1.0);
+        }
+
+        _pruneArtCache() {
+            const dir = Gio.File.new_for_path(this._cacheDir);
+            dir.enumerate_children_async('standard::name,time::modified', Gio.FileQueryInfoFlags.NONE, GLib.PRIORITY_LOW, this._cancellable, (d, res) => {
+                let enumerator;
+                try {
+                    enumerator = d.enumerate_children_finish(res);
+                } catch (_e) {
+                    return;
+                }
+
+                const files = [];
+                const readMore = () => {
+                    if (!this._cancellable) return;
+                    enumerator.next_files_async(64, GLib.PRIORITY_LOW, this._cancellable, (e, filesRes) => {
+                        let infos = [];
+                        try {
+                            infos = e.next_files_finish(filesRes);
+                        } catch (_err) {
+                            infos = [];
+                        }
+
+                        if (infos.length > 0) {
+                            for (const info of infos) {
+                                const name = info.get_name();
+                                const modified = info.get_modification_date_time();
+                                if (name.endsWith('.jpg') && modified) files.push({ name, time: modified.to_unix() });
+                            }
+                            readMore();
+                            return;
+                        }
+
+                        enumerator.close_async(GLib.PRIORITY_LOW, this._cancellable, () => {});
+                        files.sort((a, b) => b.time - a.time);
+                        for (const { name } of files.slice(MAX_ART_CACHE_FILES))
+                            d.get_child(name).delete_async(GLib.PRIORITY_LOW, this._cancellable, () => {});
+                    });
+                };
+                readMore();
+            });
+        }
+
+        _onDestroy() {
+            if (this._cancellable) {
+                this._cancellable.cancel();
+                this._cancellable = null;
+            }
+
+            if (this._settings) {
+                this._settings.disconnectObject(this);
+            }
+
+            [this._prevBtn, this._playBtn, this._nextBtn].forEach(btn => {
+                if (btn) btn.disconnectObject(this);
+            });
+            this.disconnectObject(this);
+
+            if (this._popup) {
+                this._popup.destroy();
+                this._popup = null;
+            }
+
+            this._stopLyricsSyncLoop();
+
+            if (this._service) {
+                this._service.disconnectObject(this);
+            }
+
+            this._cancelModeTransition();
+
+            if (this._lyricsApplyIdleId && this._tracker) {
+                this._tracker.remove(this._lyricsApplyIdleId);
+                this._lyricsApplyIdleId = 0;
+            }
+
+            if (this._titleScroll) this._cancelMarquee(this._titleScroll);
+            if (this._artistScroll) this._cancelMarquee(this._artistScroll);
+            if (this._miniScroll) this._cancelMarquee(this._miniScroll);
+
+            if (this._tracker) {
+                this._tracker.destroy();
+                this._tracker = null;
+            }
+
+            if (this._httpSession) {
+                this._httpSession.abort();
+                this._httpSession = null;
+            }
+
+            if (this._lyricsClient) {
+                this._lyricsClient.destroy();
+                this._lyricsClient = null;
+            }
+
+            if (this._service) {
+                this._service.destroy();
+                this._service = null;
+            }
+        }
+    }
+);
