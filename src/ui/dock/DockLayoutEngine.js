@@ -26,6 +26,7 @@ import { isDynamicPanelLayout, isFullBarLayout, isPanelOrFullWidth } from '../..
 import { isActorAlive, hexToRgba } from '../../core/Utils.js';
 import { HYBRID_PANEL_CONFIG } from '../../core/PanelConfig.js';
 import { calculateScale, calculatePivot, calculateBackgroundBounds } from './DockGeometryCalculator.js';
+import { retargetBackgroundResize } from './DockTransitions.js';
 
 
 const DEFAULT_BOX_SIZE = 10;
@@ -557,8 +558,12 @@ export function updateLayout(dockUI) {
 
     if (!isFullWidth && dockUI.bgActor._isMagResetting) {
         _settleBackgroundAfterReset(dockUI, bgX, bgY, bgW, bgH);
+    } else if (!isFullWidth && !dockUI.actor._isZoomActive && retargetBackgroundResize(dockUI, bgX, bgY, bgW, bgH)) {
+        // A resize animation is running: it was steered to the new size
+        // instead of being cancelled, so the dock keeps growing/shrinking smoothly.
     } else if (!dockUI.actor._isZoomActive || isFullWidth) {
         dockUI.bgActor.remove_all_transitions();
+        dockUI.bgActor._isResizing = false;
         dockUI.bgActor.set_position(bgX, bgY);
         dockUI.bgActor.set_size(bgW, bgH);
     }

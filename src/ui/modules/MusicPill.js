@@ -676,11 +676,11 @@ export const MusicPill = GObject.registerClass({ GTypeName: 'LumaMusicPill' }, c
                 if (this.visible) {
                     this.hide();
                     if (this._dockUI) {
-                        if (this._dockUI.queueRender) this._dockUI.queueRender('full', true);
+                        if (this._dockUI.queueRender) this._dockUI.queueRender('incremental', true);
                         if (this._dockUI.syncPanelSpace) this._dockUI.syncPanelSpace();
                     }
                 } else if (hadTrack && this._dockUI) {
-                    if (this._dockUI.queueRender) this._dockUI.queueRender('full', true);
+                    if (this._dockUI.queueRender) this._dockUI.queueRender('incremental', true);
                     if (this._dockUI.syncPanelSpace) this._dockUI.syncPanelSpace();
                 }
                 return;
@@ -737,7 +737,7 @@ export const MusicPill = GObject.registerClass({ GTypeName: 'LumaMusicPill' }, c
             if (!this.visible || wasNotValid) {
                 this.show();
                 if (this._dockUI) {
-                    if (this._dockUI.queueRender) this._dockUI.queueRender('full', true);
+                    if (this._dockUI.queueRender) this._dockUI.queueRender('incremental', true);
                     if (this._dockUI.syncPanelSpace) this._dockUI.syncPanelSpace();
                 }
             }

@@ -83,6 +83,84 @@ function baseBackgroundRect(bg) {
     return { x: bg._baseX, y: bg._baseY, w: bg._baseW, h: bg._baseH };
 }
 
+// Where the background is on screen right now. While a resize is still
+// running this is the in-between size, so a new resize continues from it
+// instead of jumping to the previous target first.
+const BG_PROPS = ['x', 'y', 'width', 'height'];
+
+// The resize flag alone is not trusted: other code (the magnifier, the
+// layout engine) may cancel the animation at any time.
+function isBackgroundResizing(bg) {
+    return Boolean(bg._isResizing) && BG_PROPS.some(prop => bg.get_transition(prop));
+}
+
+function visibleBackgroundRect(bg) {
+    if (isBackgroundResizing(bg)) return { x: bg.x, y: bg.y, w: bg.width, h: bg.height };
+    return baseBackgroundRect(bg);
+}
+
+function syncBlur(dockUI) {
+    if (dockUI._syncBlurGeometry) dockUI._syncBlurGeometry();
+}
+
+// Safety net once a resize stops: if the layout moved on meanwhile, make
+// the background match the latest layout so it can never stay misaligned
+// with the icons.
+function snapToLayout(dockUI) {
+    const bg = dockUI.bgActor;
+    const base = baseBackgroundRect(bg);
+    if (!base || bg._isMagResetting || !isActorAlive(dockUI.actor) || dockUI.actor._isZoomActive) return;
+
+    const isAligned = Math.abs(bg.x - base.x) < MIN_MOVE_PX && Math.abs(bg.y - base.y) < MIN_MOVE_PX &&
+        Math.abs(bg.width - base.w) < MIN_MOVE_PX && Math.abs(bg.height - base.h) < MIN_MOVE_PX;
+    if (isAligned) return;
+
+    bg.set_position(base.x, base.y);
+    bg.set_size(base.w, base.h);
+}
+
+function easeBackground(dockUI, to) {
+    const bg = dockUI.bgActor;
+    // Each resize gets an id. When a newer resize replaces this one, its
+    // onStopped must not clear the flags; any other stop (finished, or
+    // cancelled by someone else) must, or the layout engine would keep
+    // waiting for an animation that is no longer running.
+    const id = (bg._resizeId || 0) + 1;
+    bg._resizeId = id;
+    bg._isResizing = true;
+    bg._resizeTarget = to;
+    bg.ease({
+        ...to,
+        duration: BG_RESIZE_MS,
+        mode: Clutter.AnimationMode.EASE_OUT_CUBIC,
+        onUpdate: () => syncBlur(dockUI),
+        onStopped: () => {
+            if (bg._resizeId !== id || !isActorAlive(bg)) return;
+            bg._isResizing = false;
+            bg._resizeTarget = null;
+            snapToLayout(dockUI);
+            syncBlur(dockUI);
+        },
+    });
+}
+
+/**
+ * Called by the layout engine when the background's target changes while a
+ * resize is running (e.g. the Music Pill changed width mid-animation).
+ * Steers the running animation to the new size instead of snapping.
+ * Returns false when no resize is running, so the caller can set it directly.
+ */
+export function retargetBackgroundResize(dockUI, x, y, width, height) {
+    const bg = dockUI.bgActor;
+    if (!isBackgroundResizing(bg) || !bg._resizeTarget) return false;
+
+    const to = { x, y, width, height };
+    const target = bg._resizeTarget;
+    const hasChanged = Object.keys(to).some(prop => Math.abs(to[prop] - target[prop]) >= MIN_MOVE_PX);
+    if (hasChanged) easeBackground(dockUI, to);
+    return true;
+}
+
 function resumeMagnifier(dockUI) {
     if (!isActorAlive(dockUI.actor) || !dockUI.actor._isMagSetup) return;
     const [px, py] = global.get_pointer();
@@ -120,7 +198,7 @@ export function captureDockTransition(dockUI) {
         slots,
         actors,
         origin: dockUI.actor.get_transformed_position(),
-        bgRect: baseBackgroundRect(dockUI.bgActor),
+        bgRect: visibleBackgroundRect(dockUI.bgActor),
     };
 }
 
@@ -193,7 +271,10 @@ export function playDockTransition(dockUI, transition) {
             const oldSlot = transition.slots.get(key);
             if (canSlide && oldSlot && playSlide(entry.actor, dockUI.actor, oldSlot, shiftX, shiftY)) isAnimating = true;
             if (entry.isRunning && !transition.actors.get(key).isRunning) playIndicatorPop(entry.actor, dockUI);
-        } else if (!transition.keys.has(key) && ENTER_TYPES.includes(entry.type)) {
+        } else if (ENTER_TYPES.includes(entry.type) &&
+            (!transition.keys.has(key) || (isActorAlive(entry.actor) && entry.actor.is_mapped()))) {
+            // New items, and items that were hidden before (the Music Pill
+            // stays registered while nothing plays), grow into place.
             playEnter(entry.actor, dockUI.dockPosition);
             isAnimating = true;
         }
@@ -287,7 +368,7 @@ function playBackgroundResize(dockUI, oldRect, shiftX, shiftY) {
     bg.remove_all_transitions();
     bg.set_position(from.x, from.y);
     bg.set_size(from.width, from.height);
-    bg.ease({ ...to, duration: BG_RESIZE_MS, mode: Clutter.AnimationMode.EASE_OUT_CUBIC });
+    easeBackground(dockUI, to);
     return true;
 }
 
